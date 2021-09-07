@@ -10,6 +10,9 @@ Plug 'scrooloose/syntastic'
 Plug 'valloric/youcompleteme'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'leafgarland/typescript-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'kien/rainbow_parentheses.vim'
 
 call plug#end()
 
@@ -36,3 +39,8 @@ nnoremap <C-f> :NERDTreeFind<CR>
 map  <C-l> :tabn<CR>
 map  <C-h> :tabp<CR>
 map  <C-n> :tabnew<CR>
+
+let g:javascript_plugin_jsdoc = 1
+
+let g:indent_guides_enable_on_vim_startup = 1
+
