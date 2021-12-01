@@ -3,7 +3,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/syntastic'
@@ -11,7 +12,6 @@ Plug 'valloric/youcompleteme'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'kien/rainbow_parentheses.vim'
 
 call plug#end()
@@ -22,6 +22,10 @@ set expandtab
 
 syntax on
 set number
+
+" set ruler
+" set colorcolumn=80
+let &colorcolumn="80,".join(range(120,999),",")
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -42,5 +46,7 @@ map  <C-n> :tabnew<CR>
 
 let g:javascript_plugin_jsdoc = 1
 
-let g:indent_guides_enable_on_vim_startup = 1
+" close preview window in ycmd after insertion
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
 
