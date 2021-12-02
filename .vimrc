@@ -27,7 +27,8 @@ set number
 
 " set ruler
 " set colorcolumn=80
-let &colorcolumn="80,".join(range(120,999),",")
+let &colorcolumn="80,".join(range(120,120),",")
+highlight ColorColumn ctermbg=238
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
