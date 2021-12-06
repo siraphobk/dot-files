@@ -20,6 +20,7 @@ filetype plugin on
 set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
 set encoding=UTF-8
+setlocal foldmethod=syntax  " set folding based on syntax
 
 " VIM-PLUG
 call plug#begin('~/.config/nvim/plugged')
