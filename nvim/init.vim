@@ -1,3 +1,4 @@
+" Native
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching 
 set ignorecase              " case insensitive 
@@ -20,7 +21,22 @@ filetype plugin on
 set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
 set encoding=UTF-8
-setlocal foldmethod=syntax  " set folding based on syntax
+set foldmethod=syntax       " set folding based on syntax
+set nofoldenable            " makes sure that when opening, files are not folded
+
+" remapping tab navigation
+nnoremap <C-PageUp> :tabprevious<CR>
+nnoremap <C-PageDown> :tabnext<CR>
+
+" auto pairing parens
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
 
 " VIM-PLUG
 call plug#begin('~/.config/nvim/plugged')
