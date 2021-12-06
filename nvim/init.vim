@@ -1,4 +1,4 @@
-" Native
+" -- Native
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching 
 set ignorecase              " case insensitive 
@@ -46,7 +46,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 
-" VIM-PLUG
+" -- VIM-PLUG
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'scrooloose/nerdtree'
@@ -66,7 +66,7 @@ Plug 'yggdroot/indentline'
 
 call plug#end()
 
-" NERDTree
+" -- NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
@@ -74,7 +74,7 @@ nnoremap <C-f> :NERDTreeFind<CR>
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
-" Syntastic
+" -- Syntastic
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -82,23 +82,29 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+" for go language
+let g:syntastic_go_checkers = ['golint', 'govet', 'golangci-lint']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:go_list_type = "quickfix"
 
-" GitGutter
+" -- GitGutter
 set updatetime=100
 
-" NERDCommenter
+" -- NERDCommenter
 " Vim sees '_' as '/'
 nmap <C-_>   <Plug>NERDCommenterToggle
 vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
 
-" CtrlP
+" -- CtrlP
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 " ignore files in .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 
-" COC -- BEGIN
+" -- COC -- BEGIN
 " extensions (more at https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions)
 let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-jedi', 'coc-go']
 
@@ -260,15 +266,17 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR> 
 
-" COC -- END
+" -- COC -- END
 
-" Colorschemes
+
+" -- Colorschemes
 colorscheme deus
 
-" Vim-Javascript
+" -- Vim-Javascript
 let g:javascript_plugin_jsdoc = 1
 
-" Vim-Indentline
+" -- Vim-Indentline
 let g:indentLine_setColors = 0
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_enabled = 1
+
