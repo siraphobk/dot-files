@@ -1,4 +1,5 @@
 " -- Native
+syntax on                   " syntax highlighting
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching 
 set ignorecase              " case insensitive 
@@ -14,7 +15,6 @@ set number                  " add line numbers
 set wildmode=longest,list   " get bash-like tab completions
 set cc=80                  " set an 80 column border for good coding style
 filetype plugin indent on   "allow auto-indenting depending on file type
-syntax on                   " syntax highlighting
 set mouse=a                 " enable mouse click
 set clipboard=unnamedplus   " using system clipboard
 filetype plugin on
@@ -23,6 +23,8 @@ set ttyfast                 " Speed up scrolling in Vim
 set encoding=UTF-8
 set foldmethod=syntax       " set folding based on syntax
 set nofoldenable            " makes sure that when opening, files are not folded
+set nowrap                  " line keeps going on
+set noswapfile              " disable swap file creation
 " set tab display to have indent line
 set list lcs=tab:\|\ 
 
@@ -66,6 +68,7 @@ Plug 'yggdroot/indentline'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
+
 call plug#end()
 
 " -- NERDTree
@@ -103,12 +106,19 @@ vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 " ignore files in .gitignore
+" ignore files in .gitignore
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 
 " -- COC -- BEGIN
 " extensions (more at https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions)
-let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-jedi', 'coc-go']
+let g:coc_global_extensions = [ 
+            \'coc-json', 
+            \'coc-git', 
+            \'coc-jedi', 
+            \'coc-go',
+            \'coc-rust-analyzer'
+            \]
 
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -209,7 +219,6 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 nmap <leader>ac  <Plug>(coc-codeaction)
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
-
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 xmap if <Plug>(coc-funcobj-i)
