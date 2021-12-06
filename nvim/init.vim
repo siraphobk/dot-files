@@ -37,6 +37,12 @@ inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
+" move between panes to left/bottom/top/right
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
 
 " VIM-PLUG
 call plug#begin('~/.config/nvim/plugged')
