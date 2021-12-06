@@ -63,6 +63,8 @@ Plug 'flazz/vim-colorschemes'
 Plug 'pangloss/vim-javascript'
 Plug 'jparise/vim-graphql'
 Plug 'yggdroot/indentline'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
