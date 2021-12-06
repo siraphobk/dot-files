@@ -23,6 +23,8 @@ set ttyfast                 " Speed up scrolling in Vim
 set encoding=UTF-8
 set foldmethod=syntax       " set folding based on syntax
 set nofoldenable            " makes sure that when opening, files are not folded
+" set tab display to have indent line
+set list lcs=tab:\|\ 
 
 " remapping tab navigation
 nnoremap <C-PageUp> :tabprevious<CR>
@@ -58,6 +60,9 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'flazz/vim-colorschemes'
+Plug 'pangloss/vim-javascript'
+Plug 'jparise/vim-graphql'
+Plug 'yggdroot/indentline'
 
 call plug#end()
 
@@ -258,4 +263,12 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 " COC -- END
 
 " Colorschemes
-colorscheme molokai
+colorscheme deus
+
+" Vim-Javascript
+let g:javascript_plugin_jsdoc = 1
+
+" Vim-Indentline
+let g:indentLine_setColors = 0
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_enabled = 1
