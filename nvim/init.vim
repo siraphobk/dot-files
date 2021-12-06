@@ -282,3 +282,6 @@ let g:indentLine_setColors = 0
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_enabled = 1
 
+" -- Vim-go
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
