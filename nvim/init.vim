@@ -67,14 +67,14 @@ Plug 'jparise/vim-graphql'
 Plug 'yggdroot/indentline'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
 " -- NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
 nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
@@ -294,3 +294,4 @@ let g:indentLine_enabled = 1
 " -- Vim-go
 let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
+
