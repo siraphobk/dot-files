@@ -22,6 +22,7 @@ set cursorline              " highlight current cursorline
 set ttyfast                 " Speed up scrolling in Vim
 set encoding=UTF-8
 set foldmethod=syntax       " set folding based on syntax
+set foldlevelstart=30       " set foldlevelstart to a random large number to prevent folding everything when start editing
 set nofoldenable            " makes sure that when opening, files are not folded
 set nowrap                  " line keeps going on
 set noswapfile              " disable swap file creation
@@ -70,6 +71,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 
 call plug#end()
+
 
 " -- NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
