@@ -9,3 +9,6 @@ cd ~/.local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Co
 # install nodejs
 curl -fsSL https://deb.nodesource.com/setup_17.x | sudo -E bash -
 sudo apt-get install -y nodejs
+
+# install flake8 for python syntax checking (syntastic checker)
+pip install flake8
