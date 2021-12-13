@@ -69,6 +69,7 @@ Plug 'yggdroot/indentline'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
