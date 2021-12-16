@@ -127,7 +127,7 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 let g:coc_global_extensions = [ 
             \'coc-json', 
             \'coc-git', 
-            \'coc-jedi', 
+            \'coc-pyright',
             \'coc-go',
             \'coc-rust-analyzer',
             \'coc-flutter'
