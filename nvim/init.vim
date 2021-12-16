@@ -28,6 +28,7 @@ set nowrap                  " line keeps going on
 set noswapfile              " disable swap file creation
 " set tab display to have indent line
 set list lcs=tab:\|\ 
+let mapleader=','
 
 " remapping tab navigation
 nnoremap <C-PageUp> :tabprevious<CR>
