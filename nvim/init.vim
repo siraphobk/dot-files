@@ -30,6 +30,13 @@ set noswapfile              " disable swap file creation
 set list lcs=tab:\|\ 
 let mapleader=','
 
+" windows resizing
+" increase resizing by 10 times
+nnoremap <C-w>> 10<C-w>>
+nnoremap <C-w>< 10<C-w><
+nnoremap <C-w>+ 10<C-w>+
+nnoremap <C-w>- 10<C-w>-
+
 " remapping tab navigation
 nnoremap <C-PageUp> :tabprevious<CR>
 nnoremap <C-PageDown> :tabnext<CR>
@@ -71,6 +78,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
+Plug 'mbbill/undotree'
 
 call plug#end()
 
@@ -238,7 +246,7 @@ omap ac <Plug>(coc-classobj-a)
 " Remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
- nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
   inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
   inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
   vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
@@ -299,4 +307,8 @@ let g:indentLine_enabled = 1
 " -- Vim-go
 let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
+
+" -- Vim-Undotree
+nnoremap <leader>UT :UndotreeToggle<CR>
+let g:undotree_WindowLayout=4
 
