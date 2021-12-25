@@ -30,6 +30,10 @@ set noswapfile              " disable swap file creation
 set list lcs=tab:\|\ 
 let mapleader=','
 
+" remap j to gj and k to gk
+nnoremap j gj
+nnoremap k gk
+
 " windows resizing
 " increase resizing by 10 times
 nnoremap <C-w>> 10<C-w>>
