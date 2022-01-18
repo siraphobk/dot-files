@@ -34,3 +34,7 @@ i-zsh:
 i-grc:
 	apt install -y grc
 
+remap-caps2backsp:
+	xmodmap -e "keycode 66 = BackSpace"
+remap-backsp2caps:
+	xmodmap -e "keycode 66 = Caps_Lock"
