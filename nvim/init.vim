@@ -83,6 +83,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'mbbill/undotree'
+Plug 'majutsushi/tagbar'
 
 call plug#end()
 
@@ -316,3 +317,5 @@ let g:go_highlight_function_calls = 1
 nnoremap <leader>UT :UndotreeToggle<CR>
 let g:undotree_WindowLayout=4
 
+" -- Tag-bar
+nmap <F8> :TagbarToggle<CR>
