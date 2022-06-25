@@ -66,12 +66,10 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-surround'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'flazz/vim-colorschemes'
@@ -87,6 +85,9 @@ Plug 'majutsushi/tagbar'
 
 call plug#end()
 
+"" -- FZF
+let g:fzf_preview_window = 'right:50%'
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6  }  }
 
 " -- NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -312,6 +313,7 @@ let g:indentLine_enabled = 1
 " -- Vim-go
 let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
+let g:go_fmt_command = "goimports"
 
 " -- Vim-Undotree
 nnoremap <leader>UT :UndotreeToggle<CR>
