@@ -28,7 +28,9 @@ set nowrap                  " line keeps going on
 set noswapfile              " disable swap file creation
 " set tab display to have indent line
 set list lcs=tab:\|\ 
-let mapleader=','
+
+nnoremap <SPACE> <Nop>
+let mapleader=" "
 
 " remap j to gj and k to gk
 nnoremap j gj
@@ -41,9 +43,11 @@ nnoremap <C-w>< 10<C-w><
 nnoremap <C-w>+ 10<C-w>+
 nnoremap <C-w>- 10<C-w>-
 
-" remapping tab navigation
-nnoremap <C-PageUp> :tabprevious<CR>
-nnoremap <C-PageDown> :tabnext<CR>
+" tab manipulation and navigation
+nnoremap <C-t> :tabnew<CR>
+nnoremap <C-x> :tabclose<CR>
+nnoremap <C-p> :tabprevious<CR>
+nnoremap <C-n> :tabnext<CR>
 
 " auto pairing parens
 inoremap " ""<left>
@@ -60,39 +64,39 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" split panes
+nnoremap <leader>\| :vsplit<CR>
+nnoremap <leader>- :split<CR>
 
 " -- VIM-PLUG
 call plug#begin()
 
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'scrooloose/syntastic'
 Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdcommenter'
-Plug 'tpope/vim-surround'
 Plug 'fatih/vim-go'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'flazz/vim-colorschemes'
-Plug 'pangloss/vim-javascript'
-Plug 'jparise/vim-graphql'
-Plug 'yggdroot/indentline'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'jparise/vim-graphql'
+Plug 'majutsushi/tagbar'
+Plug 'pangloss/vim-javascript'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
-Plug 'mbbill/undotree'
-Plug 'majutsushi/tagbar'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'yggdroot/indentline'
 
 call plug#end()
 
-"" -- FZF
+" -- FZF
 let g:fzf_preview_window = 'right:50%'
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6  }  }
 
 " -- NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <leader>t :NERDTreeToggle<CR>
-nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
@@ -106,14 +110,16 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 " for go language
-let g:syntastic_go_checkers = ['golint', 'govet', 'golangci-lint']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
-let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
+let g:syntastic_go_checkers = ['go', 'govet', 'gofmt']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 let g:go_list_type = "quickfix"
 
 " -- GitGutter
 set updatetime=100
+highlight GitGutterAdd    guifg=#009900 ctermfg=2
+highlight GitGutterChange guifg=#bbbb00 ctermfg=3
+highlight GitGutterDelete guifg=#ff2222 ctermfg=1
+let g:gitgutter_set_sign_backgrounds = 0
 
 " -- NERDCommenter
 " Vim sees '_' as '/'
@@ -124,12 +130,14 @@ vmap <C-_>   <Plug>NERDCommenterToggle<CR>gv
 " -- COC -- BEGIN
 " extensions (more at https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions)
 let g:coc_global_extensions = [ 
-            \'coc-json', 
+            \'coc-docker', 
             \'coc-git', 
-            \'coc-pyright',
             \'coc-go',
+            \'coc-graphql',
+            \'coc-json', 
+            \'coc-pyright',
             \'coc-rust-analyzer',
-            \'coc-flutter'
+            \'coc-yaml'
             \]
 
 " TextEdit might fail if hidden is not set.
@@ -290,10 +298,6 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR> 
 
 " -- COC -- END
-
-
-" -- Colorschemes
-colorscheme deus
 
 " -- Vim-Javascript
 let g:javascript_plugin_jsdoc = 1
