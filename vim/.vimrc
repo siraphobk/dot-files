@@ -62,7 +62,7 @@ nnoremap <C-l> <C-w>l
 
 
 " -- VIM-PLUG
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin()
 
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
