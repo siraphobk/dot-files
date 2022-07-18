@@ -1,4 +1,11 @@
-setup-vim: vim-plug nodejs flake8
+all: apt-update setup-vim
+
+apt-update:
+	sudo apt update -y
+
+setup-vim: vim-plug \
+	nodejs \
+	flake8
 
 .PHONY: vim-plug
 vim-plug:
@@ -12,3 +19,6 @@ nodejs:
 flake8:
 	sudo apt install python3-pip
 	pip install flake8
+
+exuberant-ctags:
+	sudo apt install -y exuberant-ctags
