@@ -1,11 +1,12 @@
-all: apt-update setup-vim
+all: apt-update install-deps copy-vimscripts
 
 apt-update:
-	sudo apt update -y
+	sudo apt update
 
-setup-vim: vim-plug \
+install-deps: vim-plug \
 	nodejs \
-	flake8
+	flake8 \
+	exuberant-ctags
 
 .PHONY: vim-plug
 vim-plug:
@@ -20,5 +21,13 @@ flake8:
 	sudo apt install python3-pip
 	pip install flake8
 
+.PHONY: exuberant-ctags
 exuberant-ctags:
 	sudo apt install -y exuberant-ctags
+
+CWD=$(shell pwd)
+copy-vimscripts:
+	ln -s $(CWD)/.vimrc ~/.vimrc
+	mkdir ~/vimscripts
+	ln -s $(CWD)/vimscripts/* ~/vimscripts
+
