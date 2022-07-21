@@ -14,7 +14,7 @@ set shiftwidth=4            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
 set wildmode=longest,list   " get bash-like tab completions
-set cc=80,120               " set an 80 column border for good coding style
+set cc=120               " set an 80 column border for good coding style
 hi ColorColumn ctermbg=lightgrey guibg=lightblue
 filetype plugin indent on   "allow auto-indenting depending on file type
 set mouse=a                 " enable mouse click
