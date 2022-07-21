@@ -27,7 +27,6 @@ exuberant-ctags:
 
 CWD=$(shell pwd)
 copy-vimscripts:
-	ln -s $(CWD)/.vimrc ~/.vimrc
-	mkdir ~/vimscripts
-	ln -s $(CWD)/vimscripts/* ~/vimscripts
+	stow -R .vim -t ~
+
 
