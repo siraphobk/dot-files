@@ -20,6 +20,6 @@ Plug 'yggdroot/indentline'
 
 call plug#end()
 
-source ./vimscripts/remaps.vim
-source ./vimscripts/native.vim
-source ./vimscripts/pluginconf.vim
+source ~/.vim/.vimscripts/remaps.vim
+source ~/.vim/.vimscripts/native.vim
+source ~/.vim/.vimscripts/pluginconf.vim
