@@ -1,4 +1,6 @@
-require("dapui").setup({
+local dap, dapui = require("dap"), require("dapui")
+
+dapui.setup({
   icons = { expanded = "▾", collapsed = "▸" },
   mappings = {
     -- Use a table to apply multiple mappings
@@ -55,7 +57,6 @@ require("dapui").setup({
 })
 
 -- auto open and close
-local dap, dapui = require("dap"), require("dapui")
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open()
 end
