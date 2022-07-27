@@ -19,6 +19,10 @@ Plug('ray-x/go.nvim')
 Plug('ray-x/guihua.lua')
 Plug('lewis6991/gitsigns.nvim')
 Plug('simrat39/symbols-outline.nvim')
+Plug('vim-airline/vim-airline')
+Plug('vim-airline/vim-airline-themes')
+Plug('folke/tokyonight.nvim', { branch='main' })
+Plug('ellisonleao/gruvbox.nvim')
 
 vim.call('plug#end')
 
