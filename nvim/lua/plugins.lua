@@ -23,6 +23,10 @@ Plug('vim-airline/vim-airline')
 Plug('vim-airline/vim-airline-themes')
 Plug('folke/tokyonight.nvim', { branch='main' })
 Plug('ellisonleao/gruvbox.nvim')
+Plug('mfussenegger/nvim-dap')
+Plug('rcarriga/nvim-dap-ui')
+Plug('leoluz/nvim-dap-go')
+Plug('theHamsta/nvim-dap-virtual-text')
 
 vim.call('plug#end')
 
@@ -34,3 +38,7 @@ require('plugin/nvimcmp')
 require('plugin/gonvim')
 require('plugin/gitsigns')
 require('plugin/symbolsoutline')
+require('plugin/dap')
+require('plugin/dapgo')
+require('plugin/dapui')
+
