@@ -19,7 +19,7 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
   view = {
     adaptive_size = false,
     centralize_selection = false,
-    width = 30,
+    width = 40,
     height = 30,
     hide_root_folder = false,
     side = "left",
@@ -35,7 +35,7 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
     },
   },
   renderer = {
-    add_trailing = false,
+    add_trailing = true,
     group_empty = false,
     highlight_git = false,
     full_name = false,
