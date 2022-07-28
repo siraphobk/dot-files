@@ -10,7 +10,7 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
   open_on_setup_file = false,
   open_on_tab = true,
   ignore_buf_on_tab_change = {},
-  sort_by = "name",
+  sort_by = "extension",
   root_dirs = {},
   prefer_startup_root = false,
   sync_root_with_cwd = false,
@@ -42,7 +42,7 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
     highlight_opened_files = "none",
     root_folder_modifier = ":~",
     indent_markers = {
-      enable = false,
+      enable = true,
       icons = {
         corner = "└",
         edge = "│",
@@ -125,7 +125,7 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
   },
   git = {
     enable = true,
-    ignore = true,
+    ignore = false,
     show_on_dirs = true,
     timeout = 400,
   },

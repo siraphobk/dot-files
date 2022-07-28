@@ -24,6 +24,7 @@ set.incsearch = true
 set.cc = { 120 }
 set.swapfile = false
 set.backspace = 'indent,start,eol'
+set.wrap = false
 
 vim.cmd [[
 	syntax on

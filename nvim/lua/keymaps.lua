@@ -24,7 +24,7 @@ map.set('n', '<C-w>+', '10<C-w>+') -- adjust height
 map.set('n', '<C-w>-', '10<C-w>-')
 
 -- Telescope
-map.set('n', '<leader>ff', ':Telescope find_files<CR>')
+map.set('n', '<leader>ff', ':Telescope find_files hidden=true no_ignore=true<CR>')
 map.set('n', '<leader>fg', ':Telescope live_grep<CR>')
 map.set('n', '<leader>fb', ':Telescope buffers<CR>')
 map.set('n', '<leader>fh', ':Telescope help_tags<CR>')

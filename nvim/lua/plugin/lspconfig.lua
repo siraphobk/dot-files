@@ -7,6 +7,9 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 vim.keymap.set('n', '<space>ds', vim.diagnostic.setloclist, opts)
 
+-- Setup lspconfig.
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -33,3 +36,31 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>fm', vim.lsp.buf.formatting, bufopts)
 end
 
+
+local lsp_flags = {
+  -- This is the default in Nvim 0.7+
+  debounce_text_changes = 150,
+  capabilities = capabilities
+}
+local lspconfig = require('lspconfig')
+lspconfig['pyright'].setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+lspconfig['tsserver'].setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+lspconfig['rust_analyzer'].setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+  -- Server-specific settings...
+  settings = {
+    ["rust-analyzer"] = {}
+  }
+}
+lspconfig['gopls'].setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+}
+lspconfig['graphql'].setup{}
