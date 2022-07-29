@@ -30,6 +30,7 @@ Plug('theHamsta/nvim-dap-virtual-text')
 Plug('williamboman/mason.nvim')
 Plug('williamboman/mason-lspconfig.nvim')
 Plug('jose-elias-alvarez/null-ls.nvim')
+Plug('tpope/vim-fugitive')
 
 vim.call('plug#end')
 
