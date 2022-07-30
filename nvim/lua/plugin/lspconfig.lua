@@ -64,3 +64,4 @@ lspconfig['gopls'].setup{
   flags = lsp_flags,
 }
 lspconfig['graphql'].setup{}
+lspconfig['clangd'].setup{}
