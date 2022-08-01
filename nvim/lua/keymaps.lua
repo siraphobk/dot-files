@@ -37,9 +37,3 @@ map.set('n', '<leader>tr', function() nt_api.tree.reload() end)
 -- symbols-outline
 map.set('n', '<leader>ol', ':SymbolsOutline<CR>') -- show symbols-outline panel
 
-
--- Not sure what these do...
--- vim.cmd [[
---   inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
---   inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
--- ]]
