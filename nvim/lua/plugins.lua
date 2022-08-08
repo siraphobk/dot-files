@@ -31,6 +31,8 @@ Plug('williamboman/mason.nvim')
 Plug('williamboman/mason-lspconfig.nvim')
 Plug('jose-elias-alvarez/null-ls.nvim')
 Plug('tpope/vim-fugitive')
+Plug('ellisonleao/glow.nvim')
+
 
 vim.call('plug#end')
 
@@ -49,4 +51,4 @@ require('plugin/mason')
 require('plugin/masonlspconfig')
 require('plugin/nullls')
 require('plugin/telescope')
-
+require('plugin/glow')

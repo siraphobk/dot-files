@@ -65,3 +65,4 @@ lspconfig['gopls'].setup{
 }
 lspconfig['graphql'].setup{}
 lspconfig['clangd'].setup{}
+lspconfig['dockerls'].setup{}
