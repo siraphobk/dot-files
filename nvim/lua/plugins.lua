@@ -31,8 +31,8 @@ Plug('williamboman/mason.nvim')
 Plug('williamboman/mason-lspconfig.nvim')
 Plug('jose-elias-alvarez/null-ls.nvim')
 Plug('tpope/vim-fugitive')
-Plug('ellisonleao/glow.nvim')
-
+Plug('tpope/vim-fugitive')
+vim.cmd("Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}")
 
 vim.call('plug#end')
 
@@ -51,4 +51,3 @@ require('plugin/mason')
 require('plugin/masonlspconfig')
 require('plugin/nullls')
 require('plugin/telescope')
-require('plugin/glow')
