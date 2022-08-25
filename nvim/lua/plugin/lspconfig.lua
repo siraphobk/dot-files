@@ -42,6 +42,7 @@ local lsp_flags = {
   debounce_text_changes = 150,
   capabilities = capabilities
 }
+
 local lspconfig = require('lspconfig')
 lspconfig['pyright'].setup{
   on_attach = on_attach,
