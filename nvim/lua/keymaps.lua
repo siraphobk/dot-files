@@ -31,7 +31,8 @@ map.set('n', '<leader>fh', ':Telescope help_tags<CR>')
 
 -- nvim-tree
 map.set('n', '<leader>tt', function() nt_api.tree.toggle() end)
-map.set('n', '<leader>tf', function() nt_api.tree.focus() end)
+map.set('n', '<leader>tF', function() nt_api.tree.focus() end)
+map.set('n', '<leader>tf', function() nt_api.tree.find_file(vim.fn.expand('%')) end)
 map.set('n', '<leader>tr', function() nt_api.tree.reload() end)
 
 -- symbols-outline
