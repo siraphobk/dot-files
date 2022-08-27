@@ -11,7 +11,7 @@ require('go').setup({
   gotests_template = "", -- sets gotests -template parameter (check gotests for details)
   gotests_template_dir = "", -- sets gotests -template_dir parameter (check gotests for details)
   comment_placeholder = '' ,  -- comment_placeholder your cool placeholder e.g. ﳑ       
-  icons = {breakpoint = '🧘', currentpos = '🏃'},  -- setup to `false` to disable icons setup
+  icons = {breakpoint = '🐞', currentpos = '🏃'},  -- setup to `false` to disable icons setup
   verbose = false,  -- output loginf in messages
   lsp_cfg = false, -- true: use non-default gopls setup specified in go/lsp.lua
                    -- false: do nothing
