@@ -32,13 +32,11 @@ Plug('williamboman/mason.nvim')
 Plug('williamboman/mason-lspconfig.nvim')
 Plug('jose-elias-alvarez/null-ls.nvim')
 Plug('tpope/vim-fugitive')
-Plug('tpope/vim-fugitive')
 Plug('karb94/neoscroll.nvim')
 Plug('lukas-reineke/indent-blankline.nvim')
 Plug('navarasu/onedark.nvim')
 Plug('akinsho/toggleterm.nvim', {tag='v2.*'})
-vim.cmd("Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}")
-
+Plug('iamcco/markdown-preview.nvim', { ['do']='cd app && yarn install' })
 
 vim.call('plug#end')
 
