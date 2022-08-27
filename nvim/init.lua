@@ -3,6 +3,5 @@ require("plugins")
 require("keymaps")
 
 require("themes/vimairline")
-require("themes/gruvbox")
--- require("themes/tokyonight")
+require("themes/onedark")
 

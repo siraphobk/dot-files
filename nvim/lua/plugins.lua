@@ -35,7 +35,10 @@ Plug('tpope/vim-fugitive')
 Plug('tpope/vim-fugitive')
 Plug('karb94/neoscroll.nvim')
 Plug('lukas-reineke/indent-blankline.nvim')
+Plug('navarasu/onedark.nvim')
+Plug('akinsho/toggleterm.nvim', {tag='v2.*'})
 vim.cmd("Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}")
+
 
 vim.call('plug#end')
 
@@ -57,3 +60,4 @@ require('plugin/nullls')
 require('plugin/telescope')
 require('plugin/neoscroll')
 require('plugin/indent_blankline')
+require('plugin/toggleterm')

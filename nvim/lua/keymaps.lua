@@ -37,4 +37,3 @@ map.set('n', '<leader>tr', function() nt_api.tree.reload() end)
 
 -- symbols-outline
 map.set('n', '<leader>ol', ':SymbolsOutline<CR>') -- show symbols-outline panel
-
