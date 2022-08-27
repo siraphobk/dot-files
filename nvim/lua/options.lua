@@ -6,11 +6,11 @@ set.background = 'dark'
 set.clipboard = 'unnamedplus' -- link clipbaord to '+' register (need xsel)
 set.hidden = true
 set.completeopt = 'menu,menuone,noselect'
-set.number = true 
-set.relativenumber = true 
+set.number = true
+set.relativenumber = true
 set.splitbelow = true
 set.splitright = true
-set.title = true 
+set.title = true
 set.wildmenu = true
 set.expandtab = true
 set.shiftwidth = 2
@@ -26,11 +26,10 @@ set.swapfile = false
 set.backspace = 'indent,start,eol'
 set.wrap = false
 
-vim.cmd [[ set list listchars=tab:\ \ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨ ]] 
+vim.cmd [[ set list listchars=tab:\ \ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨,eol:↲ ]]
 
 vim.cmd [[
 	syntax on
   filetype plugin on
 ]]
-
 
