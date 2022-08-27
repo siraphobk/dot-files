@@ -1,5 +1,7 @@
 stow-nvim-scripts:
 	stow -R nvim -t ~/.config/nvim
+
+stow-alacritty:
 	stow -R .alacritty.yaml -t ~/.alacritty.yaml
 
 vim-plug-nvim:

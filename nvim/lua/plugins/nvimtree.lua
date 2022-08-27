@@ -1,4 +1,4 @@
-require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
+require("nvim-tree").setup {
   auto_reload_on_write = true,
   create_in_closed_folder = false,
   disable_netrw = false,
@@ -86,7 +86,12 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
         },
       },
     },
-    special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
+    special_files = { 
+      "Cargo.toml", 
+      "go.mod", "go.sum",
+      "Makefile", "makefile",
+      "README.md", "readme.md",
+    },
     symlink_destination = true,
   },
   hijack_directories = {
@@ -104,9 +109,9 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
     args = {},
   },
   diagnostics = {
-    enable = false,
-    show_on_dirs = false,
-    debounce_delay = 50,
+    enable = true,
+    show_on_dirs = true,
+    debounce_delay = 200,
     icons = {
       hint = "",
       info = "",
@@ -178,4 +183,4 @@ require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
       watcher = false,
     },
   },
-} -- END_DEFAULT_OPTS
+}

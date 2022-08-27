@@ -23,12 +23,6 @@ map.set('n', '<C-w><', '10<C-w><')
 map.set('n', '<C-w>+', '10<C-w>+') -- adjust height
 map.set('n', '<C-w>-', '10<C-w>-')
 
--- Telescope
-map.set('n', '<leader>ff', ':Telescope find_files hidden=true no_ignore=true<CR>')
-map.set('n', '<leader>fg', ':Telescope live_grep<CR>')
-map.set('n', '<leader>fb', ':Telescope buffers<CR>')
-map.set('n', '<leader>fh', ':Telescope help_tags<CR>')
-
 -- nvim-tree
 map.set('n', '<leader>tt', function() nt_api.tree.toggle() end)
 map.set('n', '<leader>tF', function() nt_api.tree.focus() end)
@@ -37,3 +31,10 @@ map.set('n', '<leader>tr', function() nt_api.tree.reload() end)
 
 -- symbols-outline
 map.set('n', '<leader>ol', ':SymbolsOutline<CR>') -- show symbols-outline panel
+
+-- Telescope
+map.set('n', '<leader>ff', ':Telescope find_files hidden=true no_ignore=true<CR>')
+map.set('n', '<leader>fg', ':Telescope live_grep<CR>')
+map.set('n', '<leader>fb', ':Telescope buffers<CR>')
+map.set('n', '<leader>fh', ':Telescope help_tags<CR>')
+

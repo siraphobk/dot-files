@@ -5,11 +5,11 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
 Plug('nvim-lua/plenary.nvim')
-
 Plug('nvim-telescope/telescope.nvim', { tag='0.1.0' })
 Plug('nvim-treesitter/nvim-treesitter', { ['do']= vim.fn['TSUpdate'] })
 Plug('nvim-treesitter/nvim-treesitter-context')
 Plug('kyazdani42/nvim-web-devicons') -- optional, for file icons (needs patched fonts, source: https://www.nerdfonts.com/)
+
 Plug('kyazdani42/nvim-tree.lua')
 Plug('neovim/nvim-lspconfig')
 Plug('hrsh7th/cmp-nvim-lsp')
@@ -43,7 +43,7 @@ vim.call('plug#end')
 
 -- Load Plugin Configurations
 require('plugins/treesitter')
-require('plugins/treesittercontext')
+require('plugins/treesitter_context')
 require('plugins/nvimtree')
 require('plugins/nvimcmp')
 require('plugins/lspconfig')
