@@ -23,18 +23,30 @@ map.set('n', '<C-w><', '10<C-w><')
 map.set('n', '<C-w>+', '10<C-w>+') -- adjust height
 map.set('n', '<C-w>-', '10<C-w>-')
 
--- nvim-tree
-map.set('n', '<leader>tt', function() nt_api.tree.toggle() end)
-map.set('n', '<leader>tF', function() nt_api.tree.focus() end)
-map.set('n', '<leader>tf', function() nt_api.tree.find_file(vim.fn.expand('%')) end)
-map.set('n', '<leader>tr', function() nt_api.tree.reload() end)
+local wk = require("which-key")
 
--- symbols-outline
-map.set('n', '<leader>ol', ':SymbolsOutline<CR>') -- show symbols-outline panel
+wk.register({
+  -- Telescope
+  f = {
+    name = 'Telescope',
+    f = { ':Telescope find_files hidden=true no_ignore=true<CR>', "Find Files" },
+    g = { ':Telescope live_grep<CR>', "Live Grep" },
+    b = { ':Telescope buffers<CR>', "Buffers" },
+    h = { ':Telescope help_tags<CR>', "Help Tags" },
+  },
 
--- Telescope
-map.set('n', '<leader>ff', ':Telescope find_files hidden=true no_ignore=true<CR>')
-map.set('n', '<leader>fg', ':Telescope live_grep<CR>')
-map.set('n', '<leader>fb', ':Telescope buffers<CR>')
-map.set('n', '<leader>fh', ':Telescope help_tags<CR>')
+  -- Nvim-Tree
+  t = {
+    name = 'Nvim-Tree',
+    t = { function() nt_api.tree.toggle() end, "Toggle Tree" },
+    f = { function() nt_api.tree.find_file(vim.fn.expand('%')) end, "Find the current file" },
+    r = { function() nt_api.tree.reload() end, "Reload Tree" },
+    F = { function() nt_api.tree.focus() end, "Focus Tree" },
+  },
 
+  -- Symbols-Outline
+  o = {
+    name = 'Symbols Outline',
+    l = { ':SymbolsOutline<CR>', "Toggle Symbols Outline" },
+  }
+}, { prefix = '<leader>' })

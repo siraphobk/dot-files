@@ -26,7 +26,7 @@ set.swapfile = false
 set.backspace = 'indent,start,eol'
 set.wrap = false
 
-vim.cmd [[ set list listchars=tab:\ \ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨,eol:↲ ]]
+vim.cmd [[ set list listchars=tab:\ \ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨ ]]
 
 vim.cmd [[
 	syntax on
