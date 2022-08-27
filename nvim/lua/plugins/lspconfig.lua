@@ -6,9 +6,6 @@ vim.keymap.set('n', '<space>ds', vim.diagnostic.setloclist, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 
--- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -35,11 +32,9 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>fm', vim.lsp.buf.formatting, bufopts)
 end
 
--- All servers configurations
--- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 
-local lspconfig = require('lspconfig')
-
+-- NOTICE: Capabilities needs cmp_nvim_lsp
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local lsp_flags = {
   -- This is the default in Nvim 0.7+
   debounce_text_changes = 150,
@@ -47,6 +42,9 @@ local lsp_flags = {
 }
 
 -- Config LS's
+-- All servers configurations
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+local lspconfig = require('lspconfig')
 
 lspconfig['clangd'].setup{
   on_attach = on_attach,
