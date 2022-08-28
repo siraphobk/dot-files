@@ -36,6 +36,7 @@ Plug('lukas-reineke/indent-blankline.nvim')
 Plug('navarasu/onedark.nvim')
 Plug('akinsho/toggleterm.nvim', {tag='v2.*'})
 Plug('iamcco/markdown-preview.nvim', { ['do']='cd app && yarn install' })
+Plug('romgrk/barbar.nvim')
 
 vim.call('plug#end')
 
@@ -59,3 +60,5 @@ require('plugins/neoscroll')
 require('plugins/indent_blankline')
 require('plugins/toggleterm')
 require('plugins/lint')
+require('plugins/barbar')
+

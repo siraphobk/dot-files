@@ -29,7 +29,7 @@ map.set('n', '<leader>tF', function() nt_api.tree.focus() end)
 map.set('n', '<leader>tf', function() nt_api.tree.find_file(vim.fn.expand('%')) end)
 map.set('n', '<leader>tr', function() nt_api.tree.reload() end)
 
--- symbols-outline
+-- Symbols-outline
 map.set('n', '<leader>ol', ':SymbolsOutline<CR>') -- show symbols-outline panel
 
 -- Telescope
@@ -38,3 +38,47 @@ map.set('n', '<leader>fg', ':Telescope live_grep<CR>')
 map.set('n', '<leader>fb', ':Telescope buffers<CR>')
 map.set('n', '<leader>fh', ':Telescope help_tags<CR>')
 
+-- BarBar
+local api_map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
+
+-- Move to previous/next
+api_map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
+api_map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
+-- Re-order to previous/next
+api_map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', opts)
+api_map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', opts)
+-- Goto buffer in position...
+api_map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', opts)
+api_map('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', opts)
+api_map('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', opts)
+api_map('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', opts)
+api_map('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', opts)
+api_map('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', opts)
+api_map('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', opts)
+api_map('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', opts)
+api_map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
+api_map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
+-- Pin/unpin buffer
+api_map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
+-- Close buffer
+api_map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+-- Wipeout buffer
+--                 :BufferWipeout
+-- Close commands
+--                 :BufferCloseAllButCurrent
+--                 :BufferCloseAllButPinned
+--                 :BufferCloseAllButCurrentOrPinned
+--                 :BufferCloseBuffersLeft
+--                 :BufferCloseBuffersRight
+-- Magic buffer-picking mode
+api_map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
+-- Sort automatically by...
+api_map('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', opts)
+api_map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', opts)
+api_map('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', opts)
+api_map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
+
+-- Other:
+-- :BarbarEnable - enables barbar (enabled by default)
+-- :BarbarDisable - very bad command, should never be used
