@@ -29,9 +29,6 @@ map.set('n', '<leader>tF', function() nt_api.tree.focus() end)
 map.set('n', '<leader>tf', function() nt_api.tree.find_file(vim.fn.expand('%')) end)
 map.set('n', '<leader>tr', function() nt_api.tree.reload() end)
 
--- Symbols-outline
-map.set('n', '<leader>ol', ':SymbolsOutline<CR>') -- show symbols-outline panel
-
 -- Telescope
 map.set('n', '<leader>ff', ':Telescope find_files hidden=true no_ignore=true<CR>')
 map.set('n', '<leader>fg', ':Telescope live_grep<CR>')
