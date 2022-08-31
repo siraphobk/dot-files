@@ -44,7 +44,7 @@ map.set('n', '<A->>', ':BufferLineMoveNext<CR>')
 map.set('n', '<A-<>', ':BufferLineMovePrev<CR>')
 map.set('n', '<A-<>', ':BufferLineMovePrev<CR>')
 -- Close the current tab
-map.set('n', '<A-x>', function() 
+map.set('n', '<A-c>', function() 
   -- Whenever a buffer is closed, automatically opens the tree
   nt_api.tree.close()
   vim.api.nvim_buf_delete(0, {})
