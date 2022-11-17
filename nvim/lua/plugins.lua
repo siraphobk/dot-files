@@ -1,66 +1,62 @@
--- Useful vim-plug setup in Neovim (https://dev.to/vonheikemen/neovim-using-vim-plug-in-lua-3oom)
+return require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim'
 
-local Plug = vim.fn['plug#']
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+  }
 
-vim.call('plug#begin', '~/.config/nvim/plugged')
+  use {
+    'nvim-telescope/telescope.nvim', branch = '0.1.x',
+    requires = { { 'nvim-lua/plenary.nvim' } }
+  }
 
-Plug('nvim-lua/plenary.nvim')
-Plug('nvim-telescope/telescope.nvim', { tag='0.1.0' })
-Plug('nvim-treesitter/nvim-treesitter', { ['do']= vim.fn['TSUpdate'] })
-Plug('nvim-treesitter/nvim-treesitter-context')
-Plug('kyazdani42/nvim-web-devicons') -- optional, for file icons (needs patched fonts, source: https://www.nerdfonts.com/)
-Plug('kyazdani42/nvim-tree.lua')
-Plug('neovim/nvim-lspconfig')
-Plug('hrsh7th/cmp-nvim-lsp')
-Plug('hrsh7th/cmp-buffer')
-Plug('hrsh7th/cmp-path')
-Plug('hrsh7th/cmp-cmdline')
-Plug('hrsh7th/nvim-cmp')
-Plug('saadparwaiz1/cmp_luasnip')
-Plug('ray-x/go.nvim')
-Plug('ray-x/guihua.lua')
-Plug('lewis6991/gitsigns.nvim')
-Plug('vim-airline/vim-airline')
-Plug('vim-airline/vim-airline-themes')
-Plug('mfussenegger/nvim-dap')
-Plug('rcarriga/nvim-dap-ui')
-Plug('leoluz/nvim-dap-go')
-Plug('theHamsta/nvim-dap-virtual-text')
-Plug('williamboman/mason.nvim')
-Plug('williamboman/mason-lspconfig.nvim')
-Plug('mfussenegger/nvim-lint')
-Plug('jose-elias-alvarez/null-ls.nvim')
-Plug('tpope/vim-fugitive')
-Plug('karb94/neoscroll.nvim')
-Plug('lukas-reineke/indent-blankline.nvim')
-Plug('navarasu/onedark.nvim')
-Plug('akinsho/toggleterm.nvim', {tag='v2.*'})
-Plug('iamcco/markdown-preview.nvim', { ['do']='cd app && yarn install' })
-Plug('akinsho/bufferline.nvim', { tag='v2.*' })
-Plug('stevearc/aerial.nvim')
-Plug('L3MON4D3/LuaSnip')
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
-vim.call('plug#end')
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
 
--- Load Plugin Configurations
-require('plugins/treesitter')
-require('plugins/treesitter_context')
-require('plugins/nvim_tree')
-require('plugins/nvim_cmp')
-require('plugins/lspconfig')
-require('plugins/gonvim')
-require('plugins/gitsigns')
-require('plugins/dap')
-require('plugins/dapgo')
-require('plugins/dapui')
-require('plugins/mason')
-require('plugins/masonlspconfig')
-require('plugins/nullls')
-require('plugins/telescope')
-require('plugins/neoscroll')
-require('plugins/indent_blankline')
-require('plugins/toggleterm')
-require('plugins/lint')
-require('plugins/bufferline')
-require('plugins/aerial')
-require('plugins/luasnip')
+  use "williamboman/mason.nvim"
+
+  use "neovim/nvim-lspconfig" -- Configurations for Nvim LSP
+
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/vim-vsnip'
+
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
+
+  use {"akinsho/toggleterm.nvim", tag = '*'}
+
+  use 'ray-x/go.nvim'
+  use 'ray-x/guihua.lua' -- recommanded if need floating window support
+
+  -- THEMES
+  use 'sainnhe/sonokai'
+
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+
+
+end)
