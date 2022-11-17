@@ -48,7 +48,7 @@ return require('packer').startup(function(use)
   use {"akinsho/toggleterm.nvim", tag = '*'}
 
   use 'ray-x/go.nvim'
-  use 'ray-x/guihua.lua' -- recommanded if need floating window support
+  use 'ray-x/guihua.lua' -- recommended if need floating window support
 
   -- THEMES
   use 'sainnhe/sonokai'
@@ -58,5 +58,15 @@ return require('packer').startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
+  use 'simrat39/symbols-outline.nvim'
+
+  use {
+    'mfussenegger/nvim-dap',
+    run='go install github.com/go-delve/delve/cmd/dlv@latest',
+    requires = {
+      { 'leoluz/nvim-dap-go' },
+      { 'rcarriga/nvim-dap-ui' },
+    }
+  }
 
 end)

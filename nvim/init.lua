@@ -10,7 +10,10 @@ require("plugin_opts/mason")
 require("plugin_opts/lspconfig")
 require("plugin_opts/nvim-cmp")
 require("plugin_opts/toggleterm")
-require("plugin_opts.go-nvim")
+require("plugin_opts/go-nvim")
+require("plugin_opts/gitsigns")
+require("plugin_opts/symbols-outline")
+require("plugin_opts/dap")
 
 -- load themes
 require("themes/sonokai")
