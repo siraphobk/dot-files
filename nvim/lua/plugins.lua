@@ -15,6 +15,8 @@ return require('packer').startup(function(use)
 
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
+  use 'nvim-treesitter/nvim-treesitter-context'
+
   use {
     "folke/which-key.nvim",
     config = function()
@@ -67,6 +69,18 @@ return require('packer').startup(function(use)
       { 'leoluz/nvim-dap-go' },
       { 'rcarriga/nvim-dap-ui' },
     }
+  }
+
+  use{
+      "iamcco/markdown-preview.nvim",
+      run = function() vim.fn["mkdp#util#install"]() end,
+  }
+
+  use "lukas-reineke/indent-blankline.nvim"
+
+  use {
+    'romgrk/barbar.nvim',
+    requires = {'kyazdani42/nvim-web-devicons'}
   }
 
 end)

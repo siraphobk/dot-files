@@ -14,6 +14,8 @@ require("plugin_opts/go-nvim")
 require("plugin_opts/gitsigns")
 require("plugin_opts/symbols-outline")
 require("plugin_opts/dap")
+require("plugin_opts/indent-blankline")
+require("plugin_opts/barbar")
 
 -- load themes
 require("themes/sonokai")
