@@ -3,6 +3,8 @@
 
 local dap, dapui = require("dap"), require("dapui")
 
+vim.keymap.set('n', '<F4>', ':DapToggleBreakpoint<CR>')
+
 require('dap-go').setup()
 
 -- dap.adapters.delve = {

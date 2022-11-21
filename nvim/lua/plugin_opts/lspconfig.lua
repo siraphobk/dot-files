@@ -81,3 +81,9 @@ require'lspconfig'.rust_analyzer.setup{
   capabilities = capabilities,
 }
 
+require'lspconfig'.graphql.setup{
+  on_attach = on_attach,
+  flags = lsp_flags,
+  capabilities = capabilities,
+}
+
