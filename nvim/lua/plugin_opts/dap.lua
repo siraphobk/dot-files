@@ -4,6 +4,7 @@
 local dap, dapui = require("dap"), require("dapui")
 
 vim.keymap.set('n', '<F4>', ':DapToggleBreakpoint<CR>')
+vim.keymap.set('n', '<F5>', ':DapContinue<CR>')
 
 require('dap-go').setup()
 

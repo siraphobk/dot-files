@@ -14,9 +14,13 @@ return require('packer').startup(function(use)
     run = 'sudo apt install ripgrep'
   }
 
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-
-  use 'nvim-treesitter/nvim-treesitter-context'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    requires = {
+      {'nvim-treesitter/nvim-treesitter-context'},
+    },
+  }
 
   use {
     "folke/which-key.nvim",
@@ -85,5 +89,31 @@ return require('packer').startup(function(use)
   }
 
   use 'rust-lang/rust.vim'
+
+  -- Dashboard
+  use {
+    'goolord/alpha-nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function ()
+        require'alpha'.setup(require'alpha.themes.startify'.config)
+    end
+  }
+
+  use {
+      'numToStr/Comment.nvim',
+      config = function()
+        require('Comment').setup()
+      end
+  }
+
+  use {
+    'rmagatti/auto-session',
+    config = function()
+      require("auto-session").setup {
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
+      }
+    end
+  }
 
 end)
