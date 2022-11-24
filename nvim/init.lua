@@ -19,4 +19,5 @@ require("plugin_opts/barbar")
 
 -- load themes
 require("themes/sonokai")
+-- require("themes/gruvbox-material")
 require("themes/lualine")

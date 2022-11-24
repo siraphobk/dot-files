@@ -59,6 +59,7 @@ return require('packer').startup(function(use)
 
   -- THEMES
   use 'sainnhe/sonokai'
+  use 'sainnhe/gruvbox-material'
 
   use {
     'nvim-lualine/lualine.nvim',
