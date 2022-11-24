@@ -1,4 +1,4 @@
-vim.cmd [[ 
+vim.cmd([[ 
 
 if has('termguicolors')
     set termguicolors
@@ -10,5 +10,4 @@ let g:gruvbox_material_better_performance = 1
 
 colorscheme gruvbox-material
 
-]]
-
+]])

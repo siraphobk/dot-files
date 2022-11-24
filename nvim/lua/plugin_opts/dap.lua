@@ -3,10 +3,10 @@
 
 local dap, dapui = require("dap"), require("dapui")
 
-vim.keymap.set('n', '<F4>', ':DapToggleBreakpoint<CR>')
-vim.keymap.set('n', '<F5>', ':DapContinue<CR>')
+vim.keymap.set("n", "<F4>", ":DapToggleBreakpoint<CR>")
+vim.keymap.set("n", "<F5>", ":DapContinue<CR>")
 
-require('dap-go').setup()
+require("dap-go").setup()
 
 -- dap.adapters.delve = {
 --   type = 'server',
@@ -32,7 +32,7 @@ require('dap-go').setup()
 --     mode = "test",
 --     program = "${file}"
 --   },
---   -- works with go.mod packages and sub packages 
+--   -- works with go.mod packages and sub packages
 --   {
 --     type = "delve",
 --     name = "Debug test (go.mod)",
@@ -50,35 +50,35 @@ require('dap-go').setup()
 
 -- DAP-UI Configurations
 dapui.setup({
-  layouts = {
-    {
-      elements = {
-      -- Elements can be strings or table with id and size keys.
-        { id = "scopes", size = 0.25 },
-        "breakpoints",
-        "stacks",
-        "watches",
-      },
-      size = 40, -- 40 columns
-      position = "left",
-    },
-    {
-      elements = {
-        "repl",
-        --"console",
-      },
-      size = 0.25, -- 25% of total lines
-      position = "bottom",
-    },
-  },
+	layouts = {
+		{
+			elements = {
+				-- Elements can be strings or table with id and size keys.
+				{ id = "scopes", size = 0.25 },
+				"breakpoints",
+				"stacks",
+				"watches",
+			},
+			size = 40, -- 40 columns
+			position = "left",
+		},
+		{
+			elements = {
+				"repl",
+				--"console",
+			},
+			size = 0.25, -- 25% of total lines
+			position = "bottom",
+		},
+	},
 })
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
+	dapui.open()
 end
 dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
+	dapui.close()
 end
 dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
+	dapui.close()
 end

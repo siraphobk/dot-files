@@ -6,29 +6,33 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
 require("nvim-tree").setup({
-  view = {
-    adaptive_size = true,
-  },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = false,
-  },
-  diagnostics = {
-    enable = true,
-    show_on_dirs = true,
-  },
-  git = {
-    ignore = false,
-  }
+	view = {
+		adaptive_size = true,
+	},
+	renderer = {
+		group_empty = true,
+	},
+	filters = {
+		dotfiles = false,
+	},
+	diagnostics = {
+		enable = true,
+		show_on_dirs = true,
+	},
+	git = {
+		ignore = false,
+	},
 })
-
 
 local nt_api = require("nvim-tree.api")
 local set = vim.keymap.set
 
-set('n', '<leader>tt', function() nt_api.tree.toggle() end)
-set('n', '<leader>tf', function() nt_api.tree.find_file(vim.api.nvim_buf_get_name(0)) end)
-set('n', '<leader>tF', function() nt_api.tree.focus() end)
-
+set("n", "<leader>tt", function()
+	nt_api.tree.toggle()
+end)
+set("n", "<leader>tf", function()
+	nt_api.tree.find_file(vim.api.nvim_buf_get_name(0))
+end)
+set("n", "<leader>tF", function()
+	nt_api.tree.focus()
+end)
