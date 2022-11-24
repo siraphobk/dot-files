@@ -28,6 +28,7 @@ set.wrap = false
 
 vim.cmd [[ set signcolumn=yes:2 ]]
 vim.cmd [[ set list listchars=tab:\ \ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨ ]]
+vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]] -- auto format
 
 vim.cmd [[
 	syntax on
