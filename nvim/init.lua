@@ -1,6 +1,6 @@
 require("settings") -- default native settings for Neovim
-require("plugins")  -- plugin manager
-require("keymaps")  -- native keymaps
+require("plugins") -- plugin manager
+require("keymaps") -- native keymaps
 
 -- load plugins
 require("plugin_opts/nvim-tree")
