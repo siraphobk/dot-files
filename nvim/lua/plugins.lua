@@ -34,14 +34,6 @@ return require("packer").startup(function(use)
 
 	use("neovim/nvim-lspconfig") -- Configurations for Nvim LSP
 
-	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-buffer")
-	use("hrsh7th/cmp-path")
-	use("hrsh7th/cmp-cmdline")
-	use("hrsh7th/nvim-cmp")
-	use("hrsh7th/cmp-vsnip")
-	use("hrsh7th/vim-vsnip")
-
 	use({
 		"lewis6991/gitsigns.nvim",
 		config = function()
@@ -185,7 +177,7 @@ return require("packer").startup(function(use)
 					override = {
 						["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 						["vim.lsp.util.stylize_markdown"] = true,
-						["cmp.entry.get_documentation"] = true,
+						-- ["cmp.entry.get_documentation"] = true,
 					},
 				},
 				routes = {
@@ -212,6 +204,15 @@ return require("packer").startup(function(use)
 		requires = {
 			"MunifTanjim/nui.nvim",
 			"rcarriga/nvim-notify",
+		},
+	})
+
+	use({
+		"ms-jpq/coq_nvim",
+		branch = "coq",
+		requires = {
+			{ "ms-jpq/coq.artifacts", branch = "artifacts" },
+			{ "ms-jpq/coq.thirdparty", branch = "3p" },
 		},
 	})
 end)

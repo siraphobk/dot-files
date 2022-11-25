@@ -36,21 +36,24 @@ end
 
 -- Language Server Configs
 
-local lspconfig = require("lspconfig")
+local lsp = require("lspconfig")
+
+-- Setup COQ
+vim.cmd([[ let g:coq_settings = { 'auto_start': v:true }]]) -- must be called before LSP
+local coq = require("coq")
+
 local lsp_flags = {
 	-- This is the default in Nvim 0.7+
 	debounce_text_changes = 150,
 }
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-lspconfig.gopls.setup({
+lsp.gopls.setup(coq.lsp_ensure_capabilities({
 	on_attach = on_attach,
 	flags = lsp_flags,
-	capabilities = capabilities,
-})
+}))
 
 -- Lua
-lspconfig.sumneko_lua.setup({
+lsp.sumneko_lua.setup(coq.lsp_ensure_capabilities({
 	settings = {
 		Lua = {
 			runtime = {
@@ -73,17 +76,14 @@ lspconfig.sumneko_lua.setup({
 	},
 	on_attach = on_attach,
 	flags = lsp_flags,
-	capabilities = capabilities,
-})
+}))
 
-require("lspconfig").rust_analyzer.setup({
+lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities({
 	on_attach = on_attach,
 	flags = lsp_flags,
-	capabilities = capabilities,
-})
+}))
 
-require("lspconfig").graphql.setup({
+lsp.graphql.setup(coq.lsp_ensure_capabilities({
 	on_attach = on_attach,
 	flags = lsp_flags,
-	capabilities = capabilities,
-})
+}))
