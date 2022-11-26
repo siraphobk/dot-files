@@ -4,12 +4,11 @@ return require("packer").startup(function(use)
   use({
     "nvim-tree/nvim-tree.lua",
     requires = {
-      "nvim-tree/nvim-web-devicons", -- optional, for file icons
+      "nvim-tree/nvim-web-devicons", 
     },
   })
 
   use({
-
     "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
     requires = { { "nvim-lua/plenary.nvim" } },
@@ -102,32 +101,6 @@ return require("packer").startup(function(use)
 
   use("williamboman/mason.nvim")
   use("neovim/nvim-lspconfig")
-
-  use({
-    "MunifTanjim/prettier.nvim",
-    config = function()
-      local prettier = require("prettier")
-
-      prettier.setup({
-        bin = "prettier", -- or `'prettierd'` (v0.22+)
-        filetypes = {
-          "css",
-          "graphql",
-          "html",
-
-          "javascript",
-          "javascriptreact",
-          "json",
-          "less",
-          "markdown",
-          "scss",
-          "typescript",
-          "typescriptreact",
-          "yaml",
-        },
-      })
-    end,
-  })
 
   -- Completion engine
   use({ "hrsh7th/cmp-nvim-lsp" })

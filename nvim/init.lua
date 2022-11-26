@@ -15,7 +15,6 @@ require("plugin_opts/gitsigns")
 require("plugin_opts/symbols-outline")
 require("plugin_opts/dap")
 require("plugin_opts/indent-blankline")
-require("plugin_opts/null-ls")
 
 -- load themes
 require("themes/sonokai")
