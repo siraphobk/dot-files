@@ -3,6 +3,7 @@ local map = vim.keymap
 vim.g.mapleader = " "
 
 -- Navigation
+--
 map.set("n", "<C-h>", "<C-w>h")
 map.set("n", "<C-l>", "<C-w>l")
 map.set("n", "<C-j>", "<C-w>j")

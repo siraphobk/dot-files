@@ -1,12 +1,12 @@
-local null_ls = require("null-ls")
-
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
--- If formatting conflict occurs, follow this link <https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts>
-null_ls.setup({
+require("null-ls").setup({
 	sources = {
-		null_ls.builtins.formatting.stylua,
+		require("null-ls").builtins.formatting.stylua,
+		require("null-ls").builtins.diagnostics.eslint,
+		require("null-ls").builtins.completion.spell,
 	},
+
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
 			vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -14,7 +14,7 @@ null_ls.setup({
 				group = augroup,
 				buffer = bufnr,
 				callback = function()
-					vim.lsp.buf.format({ bufnr = bufnr, timeout_ms = 2000 })
+					vim.lsp.buf.format()
 				end,
 			})
 		end
