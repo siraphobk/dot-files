@@ -217,4 +217,13 @@ return require("packer").startup(function(use)
 			"rcarriga/nvim-notify",
 		},
 	})
+
+	-- Performance
+	use("dstein64/vim-startuptime")
+	use({
+		"lewis6991/impatient.nvim",
+		config = function()
+			require("impatient")
+		end,
+	})
 end)
