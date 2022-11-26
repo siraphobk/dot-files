@@ -32,15 +32,18 @@ return require("packer").startup(function(use)
 
 	use("williamboman/mason.nvim")
 
-	use("neovim/nvim-lspconfig") -- Configurations for Nvim LSP
+	use("neovim/nvim-lspconfig")
 
-	use("hrsh7th/cmp-nvim-lsp")
-	use("hrsh7th/cmp-buffer")
-	use("hrsh7th/cmp-path")
-	use("hrsh7th/cmp-cmdline")
-	use("hrsh7th/nvim-cmp")
-	use("hrsh7th/cmp-vsnip")
-	use("hrsh7th/vim-vsnip")
+	-- Completion engine
+	use({ "hrsh7th/cmp-nvim-lsp" })
+	use({ "hrsh7th/cmp-buffer" })
+	use({ "hrsh7th/cmp-path" })
+	use({ "hrsh7th/cmp-cmdline" })
+	use({ "hrsh7th/nvim-cmp" })
+
+	-- Snippet engine (Required for completion engine)
+	use({ "L3MON4D3/LuaSnip" })
+	use({ "saadparwaiz1/cmp_luasnip" })
 
 	use({
 		"lewis6991/gitsigns.nvim",

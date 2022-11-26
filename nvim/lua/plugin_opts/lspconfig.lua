@@ -1,4 +1,3 @@
--- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<leader>do", vim.diagnostic.open_float, opts)
@@ -12,7 +11,6 @@ local on_attach = function(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-	-- Mappings.
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
@@ -41,31 +39,30 @@ local lsp_flags = {
 	-- This is the default in Nvim 0.7+
 	debounce_text_changes = 150,
 }
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-lspconfig.gopls.setup({
-	on_attach = on_attach,
-	flags = lsp_flags,
-	capabilities = capabilities,
-})
+local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+local servers = { "gopls", "rust_analyzer", "graphql" }
 
--- Lua
+for _, server in ipairs(servers) do
+	lspconfig[server].setup({
+		on_attach = on_attach,
+		flags = lsp_flags,
+		capabilities = cmp_capabilities,
+	})
+end
+
 lspconfig.sumneko_lua.setup({
 	settings = {
 		Lua = {
 			runtime = {
-				-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
 				version = "LuaJIT",
 			},
 			diagnostics = {
-				-- Get the language server to recognize the `vim` global
 				globals = { "vim" },
 			},
 			workspace = {
-				-- Make the server aware of Neovim runtime files
 				library = vim.api.nvim_get_runtime_file("", true),
 			},
-			-- Do not send telemetry data containing a randomized but unique identifier
 			telemetry = {
 				enable = false,
 			},
@@ -73,17 +70,5 @@ lspconfig.sumneko_lua.setup({
 	},
 	on_attach = on_attach,
 	flags = lsp_flags,
-	capabilities = capabilities,
-})
-
-require("lspconfig").rust_analyzer.setup({
-	on_attach = on_attach,
-	flags = lsp_flags,
-	capabilities = capabilities,
-})
-
-require("lspconfig").graphql.setup({
-	on_attach = on_attach,
-	flags = lsp_flags,
-	capabilities = capabilities,
+	capabilities = cmp_capabilities,
 })
