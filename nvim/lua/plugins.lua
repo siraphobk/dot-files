@@ -196,8 +196,9 @@ return require("packer").startup(function(use)
 				},
 
 				presets = {
-					bottom_search = true,
+					bottom_search = false,
 					long_message_to_split = true,
+					command_palette = false,
 				},
 			})
 		end,

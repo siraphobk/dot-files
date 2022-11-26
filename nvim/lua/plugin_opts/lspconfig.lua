@@ -35,11 +35,13 @@ local on_attach = function(client, bufnr)
 end
 
 -- Language Server Configs
-
 local lsp = require("lspconfig")
 
 -- Setup COQ
-vim.cmd([[ let g:coq_settings = { 'auto_start': v:true }]]) -- must be called before LSP
+vim.g.coq_settings = {
+	auto_start = true,
+}
+
 local coq = require("coq")
 
 local lsp_flags = {
