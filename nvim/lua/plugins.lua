@@ -1,278 +1,320 @@
 return require("packer").startup(function(use)
-	use("wbthomason/packer.nvim")
+  use("wbthomason/packer.nvim")
 
-	use({
-		"nvim-tree/nvim-tree.lua",
-		requires = {
-			"nvim-tree/nvim-web-devicons", -- optional, for file icons
-		},
-	})
+  use({
+    "nvim-tree/nvim-tree.lua",
+    requires = {
+      "nvim-tree/nvim-web-devicons", -- optional, for file icons
+    },
+  })
 
-	use({
-		"nvim-telescope/telescope.nvim",
-		branch = "0.1.x",
-		requires = { { "nvim-lua/plenary.nvim" } },
-		run = "sudo apt install ripgrep",
-	})
+  use({
 
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-		requires = {
-			{ "nvim-treesitter/nvim-treesitter-context" },
-		},
-	})
+    "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
+    requires = { { "nvim-lua/plenary.nvim" } },
+    run = "sudo apt install ripgrep",
+  })
 
-	use({
-		"folke/which-key.nvim",
-		config = function()
-			require("which-key").setup()
-		end,
-	})
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    requires = {
+      { "nvim-treesitter/nvim-treesitter-context" },
+    },
+  })
 
-	use({
-		"romgrk/barbar.nvim",
-		requires = { { "nvim-web-devicons" } },
-		config = function()
-			local map = vim.api.nvim_set_keymap
-			local opts = { noremap = true, silent = true }
+  use({
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup()
+    end,
+  })
 
-			-- Move to previous/next
-			map("n", "<A-,>", "<Cmd>BufferPrevious<CR>", opts)
-			map("n", "<A-.>", "<Cmd>BufferNext<CR>", opts)
-			-- Re-order to previous/next
-			map("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", opts)
-			map("n", "<A->>", "<Cmd>BufferMoveNext<CR>", opts)
-			-- Goto buffer in position...
-			map("n", "<A-1>", "<Cmd>BufferGoto 1<CR>", opts)
-			map("n", "<A-2>", "<Cmd>BufferGoto 2<CR>", opts)
-			map("n", "<A-3>", "<Cmd>BufferGoto 3<CR>", opts)
-			map("n", "<A-4>", "<Cmd>BufferGoto 4<CR>", opts)
-			map("n", "<A-5>", "<Cmd>BufferGoto 5<CR>", opts)
-			map("n", "<A-6>", "<Cmd>BufferGoto 6<CR>", opts)
-			map("n", "<A-7>", "<Cmd>BufferGoto 7<CR>", opts)
-			map("n", "<A-8>", "<Cmd>BufferGoto 8<CR>", opts)
-			map("n", "<A-9>", "<Cmd>BufferGoto 9<CR>", opts)
-			map("n", "<A-0>", "<Cmd>BufferLast<CR>", opts)
-			-- Pin/unpin buffer
-			map("n", "<A-p>", "<Cmd>BufferPin<CR>", opts)
-			-- Close buffer
-			map("n", "<A-c>", "<Cmd>BufferClose<CR>", opts)
+  use({
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require('nvim-ts-autotag').setup({
+        autotag = {
+          enable = true,
+        }
+      })
+    end
+  })
 
+  use({
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup({})
+    end,
+  })
 
-			-- Nvim-tree integration
-			local nvim_tree_events = require("nvim-tree.events")
-			local bufferline_api = require("bufferline.api")
+  use({
+    "romgrk/barbar.nvim",
+    requires = { { "nvim-web-devicons" } },
+    config = function()
+      local map = vim.api.nvim_set_keymap
+      local opts = { noremap = true, silent = true }
 
-			local function get_tree_size()
-				return require("nvim-tree.view").View.width
-			end
+      -- Move to previous/next
+      map("n", "<A-,>", "<Cmd>BufferPrevious<CR>", opts)
+      map("n", "<A-.>", "<Cmd>BufferNext<CR>", opts)
+      -- Re-order to previous/next
+      map("n", "<A-<>", "<Cmd>BufferMovePrevious<CR>", opts)
+      map("n", "<A->>", "<Cmd>BufferMoveNext<CR>", opts)
+      -- Goto buffer in position...
+      map("n", "<A-1>", "<Cmd>BufferGoto 1<CR>", opts)
+      map("n", "<A-2>", "<Cmd>BufferGoto 2<CR>", opts)
+      map("n", "<A-3>", "<Cmd>BufferGoto 3<CR>", opts)
+      map("n", "<A-4>", "<Cmd>BufferGoto 4<CR>", opts)
+      map("n", "<A-5>", "<Cmd>BufferGoto 5<CR>", opts)
+      map("n", "<A-6>", "<Cmd>BufferGoto 6<CR>", opts)
+      map("n", "<A-7>", "<Cmd>BufferGoto 7<CR>", opts)
+      map("n", "<A-8>", "<Cmd>BufferGoto 8<CR>", opts)
+      map("n", "<A-9>", "<Cmd>BufferGoto 9<CR>", opts)
+      map("n", "<A-0>", "<Cmd>BufferLast<CR>", opts)
+      -- Pin/unpin buffer
+      map("n", "<A-p>", "<Cmd>BufferPin<CR>", opts)
+      -- Close buffer
+      map("n", "<A-c>", "<Cmd>BufferClose<CR>", opts)
 
-			nvim_tree_events.subscribe("TreeOpen", function()
-				bufferline_api.set_offset(get_tree_size())
-			end)
+      -- Nvim-tree integration
+      local nvim_tree_events = require("nvim-tree.events")
+      local bufferline_api = require("bufferline.api")
 
-			nvim_tree_events.subscribe("Resize", function()
-				bufferline_api.set_offset(get_tree_size())
-			end)
+      local function get_tree_size()
+        return require("nvim-tree.view").View.width
+      end
 
-			nvim_tree_events.subscribe("TreeClose", function()
-				bufferline_api.set_offset(0)
-			end)
-		end,
-	})
+      nvim_tree_events.subscribe("TreeOpen", function()
+        bufferline_api.set_offset(get_tree_size())
+      end)
 
-	use("williamboman/mason.nvim")
-	use("neovim/nvim-lspconfig")
+      nvim_tree_events.subscribe("Resize", function()
+        bufferline_api.set_offset(get_tree_size())
+      end)
 
-	use("MunifTanjim/prettier.nvim")
+      nvim_tree_events.subscribe("TreeClose", function()
+        bufferline_api.set_offset(0)
+      end)
+    end,
+  })
 
-	-- Completion engine
-	use({ "hrsh7th/cmp-nvim-lsp" })
-	use({ "hrsh7th/cmp-buffer" })
-	use({ "hrsh7th/cmp-path" })
-	use({ "hrsh7th/cmp-cmdline" })
-	use({ "hrsh7th/nvim-cmp" })
+  use("williamboman/mason.nvim")
+  use("neovim/nvim-lspconfig")
 
-	-- Snippet engine (Required for completion engine)
-	use({ "L3MON4D3/LuaSnip" })
-	use({ "saadparwaiz1/cmp_luasnip" })
+  use({
+    "MunifTanjim/prettier.nvim",
+    config = function()
+      local prettier = require("prettier")
 
-	use({
-		"lewis6991/gitsigns.nvim",
-		config = function()
-			require("gitsigns").setup()
-		end,
-	})
+      prettier.setup({
+        bin = "prettier", -- or `'prettierd'` (v0.22+)
+        filetypes = {
+          "css",
+          "graphql",
+          "html",
 
-	use({ "akinsho/toggleterm.nvim", tag = "*" })
+          "javascript",
+          "javascriptreact",
+          "json",
+          "less",
+          "markdown",
+          "scss",
+          "typescript",
+          "typescriptreact",
+          "yaml",
+        },
+      })
+    end,
+  })
 
-	use("ray-x/go.nvim")
-	use("ray-x/guihua.lua") -- recommended if need floating window support
+  -- Completion engine
+  use({ "hrsh7th/cmp-nvim-lsp" })
+  use({ "hrsh7th/cmp-buffer" })
+  use({ "hrsh7th/cmp-path" })
+  use({ "hrsh7th/cmp-cmdline" })
+  use({ "hrsh7th/nvim-cmp" })
 
-	-- THEMES
-	use("sainnhe/sonokai")
-	use("sainnhe/gruvbox-material")
+  -- Snippet engine (Required for completion engine)
+  use({ "L3MON4D3/LuaSnip" })
+  use({ "saadparwaiz1/cmp_luasnip" })
 
-	use({
-		"nvim-lualine/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons", opt = true },
-	})
+  use({
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("gitsigns").setup()
+    end,
+  })
 
-	use("simrat39/symbols-outline.nvim")
+  use({ "akinsho/toggleterm.nvim", tag = "*" })
 
-	use({
-		"mfussenegger/nvim-dap",
-		run = "go install github.com/go-delve/delve/cmd/dlv@latest",
-		requires = {
-			{ "leoluz/nvim-dap-go" },
-			{ "rcarriga/nvim-dap-ui" },
-			{ "theHamsta/nvim-dap-virtual-text" },
-		},
-	})
+  use("ray-x/go.nvim")
+  use("ray-x/guihua.lua") -- recommended if need floating window support
 
-	use({
-		"iamcco/markdown-preview.nvim",
-		run = function()
-			vim.fn["mkdp#util#install"]()
-		end,
-	})
+  -- THEMES
+  use("sainnhe/sonokai")
+  use("sainnhe/gruvbox-material")
 
-	use("lukas-reineke/indent-blankline.nvim")
+  use({
+    "nvim-lualine/lualine.nvim",
+    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+  })
 
-	use("rust-lang/rust.vim")
+  use("simrat39/symbols-outline.nvim")
 
-	-- Dashboard
-	use({
-		"goolord/alpha-nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
-		config = function()
-			require("alpha").setup(require("alpha.themes.startify").config)
-		end,
-	})
+  use({
+    "mfussenegger/nvim-dap",
+    run = "go install github.com/go-delve/delve/cmd/dlv@latest",
+    requires = {
+      { "leoluz/nvim-dap-go" },
+      { "rcarriga/nvim-dap-ui" },
+      { "theHamsta/nvim-dap-virtual-text" },
+    },
+  })
 
-	use({
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end,
-	})
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  })
 
-	use({
-		"rmagatti/auto-session",
-		config = function()
-			require("auto-session").setup({
-				log_level = "error",
-				auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-			})
-		end,
-	})
+  use("lukas-reineke/indent-blankline.nvim")
 
-	use({
-		"windwp/nvim-spectre",
-		requires = {
-			"nvim-lua/plenary.nvim",
-		},
+  use("rust-lang/rust.vim")
 
-		config = function()
-			local spectre = require("spectre")
-			spectre.setup()
+  -- Dashboard
+  use({
+    "goolord/alpha-nvim",
+    requires = { "kyazdani42/nvim-web-devicons" },
+    config = function()
+      require("alpha").setup(require("alpha.themes.startify").config)
+    end,
+  })
 
-			vim.keymap.set("n", "<leader>So", function()
-				spectre.open()
-			end)
-			vim.keymap.set("n", "<leader>Sw", function()
-				spectre.open_visual({ select_word = true })
-			end)
-			vim.keymap.set("n", "<leader>Sf", function()
-				spectre.open_file_search()
-			end)
-		end,
-	})
+  use({
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup()
+    end,
+  })
 
-	use({ "jose-elias-alvarez/null-ls.nvim" })
+  use({
+    "rmagatti/auto-session",
+    config = function()
+      require("auto-session").setup({
+        log_level = "error",
+        auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+      })
+    end,
+  })
 
-	use({
-		"karb94/neoscroll.nvim",
-		config = function()
-			require("neoscroll").setup()
-		end,
-	})
+  use({
+    "windwp/nvim-spectre",
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
 
-	use({
-		"folke/trouble.nvim",
-		requires = "kyazdani42/nvim-web-devicons",
-		config = function()
-			require("trouble").setup({})
+    config = function()
+      local spectre = require("spectre")
+      spectre.setup()
 
-			vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
-			vim.keymap.set(
-				"n",
-				"<leader>xw",
-				"<cmd>TroubleToggle workspace_diagnostics<cr>",
-				{ silent = true, noremap = true }
-			)
-			vim.keymap.set(
-				"n",
-				"<leader>xd",
-				"<cmd>TroubleToggle document_diagnostics<cr>",
-				{ silent = true, noremap = true }
-			)
-			vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { silent = true, noremap = true })
-			vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
-			vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
-		end,
-	})
+      vim.keymap.set("n", "<leader>So", function()
+        spectre.open()
+      end)
+      vim.keymap.set("n", "<leader>Sw", function()
+        spectre.open_visual({ select_word = true })
+      end)
+      vim.keymap.set("n", "<leader>Sf", function()
+        spectre.open_file_search()
+      end)
+    end,
+  })
 
-	use({
-		"folke/noice.nvim",
-		config = function()
-			require("notify").setup({
-				timeout = 1000,
-			})
+  use({ "jose-elias-alvarez/null-ls.nvim" })
 
-			require("noice").setup({
-				lsp = {
-					override = {
-						["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-						["vim.lsp.util.stylize_markdown"] = true,
-						["cmp.entry.get_documentation"] = true,
-					},
-				},
-				routes = {
-					{
-						filter = {
-							event = "msg_show",
-							kind = "",
-							find = "written",
-						},
-						opts = { skip = true },
-					},
-				},
+  use({
+    "karb94/neoscroll.nvim",
+    config = function()
+      require("neoscroll").setup()
+    end,
+  })
 
-				cmdline = {
-					view = "cmdline",
-				},
+  use({
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup({})
 
-				presets = {
-					bottom_search = true,
-					long_message_to_split = true,
-				},
-			})
-		end,
-		requires = {
-			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
-		},
-	})
+      vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
+      vim.keymap.set(
+        "n",
+        "<leader>xw",
+        "<cmd>TroubleToggle workspace_diagnostics<cr>",
+        { silent = true, noremap = true }
+      )
+      vim.keymap.set(
+        "n",
+        "<leader>xd",
+        "<cmd>TroubleToggle document_diagnostics<cr>",
+        { silent = true, noremap = true }
+      )
+      vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
+      vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
+    end,
+  })
 
-	-- Performance
-	use("dstein64/vim-startuptime")
+  use({
+    "folke/noice.nvim",
+    config = function()
+      require("notify").setup({
+        timeout = 1000,
+      })
 
-	use({
-		"lewis6991/impatient.nvim",
-		config = function()
-			require("impatient")
-		end,
-	})
+      require("noice").setup({
+        lsp = {
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true,
+          },
+        },
+        routes = {
+          {
+            filter = {
+              event = "msg_show",
+              kind = "",
+              find = "written",
+            },
+            opts = { skip = true },
+          },
+        },
+
+        cmdline = {
+          view = "cmdline",
+        },
+
+        presets = {
+          bottom_search = true,
+          long_message_to_split = true,
+        },
+      })
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+  })
+
+  -- Performance
+  use("dstein64/vim-startuptime")
+
+  use({
+    "lewis6991/impatient.nvim",
+    config = function()
+      require("impatient")
+    end,
+  })
 end)
