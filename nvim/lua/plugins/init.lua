@@ -1,11 +1,36 @@
+-- Auto-install Packer
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
+
+-- Auto-reload Packer when this file is edited.
+vim.cmd([[ 
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]])
+
 return require("packer").startup(function(use)
   use("wbthomason/packer.nvim")
 
   use({
     "nvim-tree/nvim-tree.lua",
     requires = {
-      "nvim-tree/nvim-web-devicons", 
+      "nvim-tree/nvim-web-devicons",
     },
+    config = function()
+      require("plugins.configs.nvim-tree")
+    end
   })
 
   use({
@@ -13,6 +38,9 @@ return require("packer").startup(function(use)
     branch = "0.1.x",
     requires = { { "nvim-lua/plenary.nvim" } },
     run = "sudo apt install ripgrep",
+    config = function()
+      require("plugins.configs.telescope")
+    end
   })
 
   use({
@@ -21,6 +49,9 @@ return require("packer").startup(function(use)
     requires = {
       { "nvim-treesitter/nvim-treesitter-context" },
     },
+    config = function()
+      require("plugins.configs.treesitter")
+    end
   })
 
   use({
@@ -99,15 +130,29 @@ return require("packer").startup(function(use)
     end,
   })
 
-  use("williamboman/mason.nvim")
-  use("neovim/nvim-lspconfig")
+  use({ "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup()
+    end
+  })
+
+  use({ "neovim/nvim-lspconfig",
+    config = function()
+      require("plugins.configs.lspconfig")
+    end
+  })
 
   -- Completion engine
   use({ "hrsh7th/cmp-nvim-lsp" })
   use({ "hrsh7th/cmp-buffer" })
   use({ "hrsh7th/cmp-path" })
   use({ "hrsh7th/cmp-cmdline" })
-  use({ "hrsh7th/nvim-cmp" })
+  use({
+    "hrsh7th/nvim-cmp",
+    config = function()
+      require("plugins.configs.nvim-cmp")
+    end
+  })
 
   -- Snippet engine (Required for completion engine)
   use({ "L3MON4D3/LuaSnip" })
@@ -120,9 +165,19 @@ return require("packer").startup(function(use)
     end,
   })
 
-  use({ "akinsho/toggleterm.nvim", tag = "*" })
+  use({
+    "akinsho/toggleterm.nvim",
+    tag = "*",
+    config = function()
+      require("plugins.configs.toggleterm")
+    end
+  })
 
-  use("ray-x/go.nvim")
+  use({"ray-x/go.nvim",
+  config = function ()
+    require("plugins.configs.go-nvim")
+  end
+})
   use("ray-x/guihua.lua") -- recommended if need floating window support
 
   -- THEMES
@@ -134,7 +189,12 @@ return require("packer").startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
   })
 
-  use("simrat39/symbols-outline.nvim")
+  use({ "simrat39/symbols-outline.nvim",
+    config = function()
+      require("symbols-outline").setup()
+      vim.keymap.set("n", "<leader>a", ":SymbolsOutline<CR>")
+    end
+  })
 
   use({
     "mfussenegger/nvim-dap",
@@ -144,6 +204,9 @@ return require("packer").startup(function(use)
       { "rcarriga/nvim-dap-ui" },
       { "theHamsta/nvim-dap-virtual-text" },
     },
+    config = function()
+      require("plugins.configs.dap")
+    end,
   })
 
   use({
@@ -153,7 +216,12 @@ return require("packer").startup(function(use)
     end,
   })
 
-  use("lukas-reineke/indent-blankline.nvim")
+  use({
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("plugins.configs.indent-blankline")
+    end
+  })
 
   use("rust-lang/rust.vim")
 
@@ -290,4 +358,8 @@ return require("packer").startup(function(use)
       require("impatient")
     end,
   })
+
+  if packer_bootstrap then
+    require("packer").sync()
+  end
 end)
