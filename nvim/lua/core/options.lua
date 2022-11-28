@@ -25,6 +25,9 @@ set.cc = { 80, 120 }
 set.swapfile = false
 set.backspace = "indent,start,eol"
 set.wrap = false
+set.foldmethod = "expr"
+set.foldexpr = "nvim_treesitter#foldexpr()"
+set.foldenable = false
 
 vim.cmd([[ set signcolumn=yes:2 ]])
 vim.cmd([[ set list listchars=tab:\ \ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨ ]])
