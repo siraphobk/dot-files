@@ -144,6 +144,10 @@ return require("packer").startup(function(use)
 	-- THEMES
 	use("sainnhe/sonokai")
 	use("sainnhe/gruvbox-material")
+	use({
+		"catppuccin/nvim",
+		as = "catppuccin",
+	})
 
 	use({
 		"nvim-lualine/lualine.nvim",
