@@ -28,7 +28,7 @@ set.wrap = false
 set.foldmethod = "expr"
 set.foldexpr = "nvim_treesitter#foldexpr()"
 set.foldenable = false
-set.foldlevel = 30
+set.foldlevel = 99
 
 vim.cmd([[ set signcolumn=yes:2 ]])
 vim.cmd([[ set list listchars=tab:\ \ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨ ]])
