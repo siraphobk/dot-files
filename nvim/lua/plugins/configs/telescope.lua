@@ -1,7 +1,11 @@
 require("telescope").setup()
 
 local builtin = require("telescope.builtin")
-local wk = require("which-key")
+local wk_ok, wk = pcall(require, "which-key")
+
+if not wk_ok then
+	return
+end
 
 wk.register({
 	f = {
