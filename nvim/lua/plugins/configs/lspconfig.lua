@@ -4,22 +4,7 @@ vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 vim.keymap.set("n", "<leader>ds", vim.diagnostic.setloclist, opts)
 
-local on_attach = function(client, bufnr)
-	-- format on save
-	if client.server_capabilities.documentFormattingProvider then
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			group = vim.api.nvim_create_augroup("Format", { clear = true }),
-			buffer = bufnr,
-			callback = function()
-				vim.lsp.buf.format({
-					bufnr = bufnr,
-				})
-			end,
-		})
-	end
-
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
+local set_keymaps = function(bufnr)
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
@@ -38,6 +23,25 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<leader>F", function()
 		vim.lsp.buf.format({ async = true })
 	end, bufopts)
+end
+
+local on_attach = function(client, bufnr)
+	-- format on save
+	if client.server_capabilities.documentFormattingProvider then
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = vim.api.nvim_create_augroup("Format", { clear = true }),
+			buffer = bufnr,
+			callback = function()
+				vim.lsp.buf.format({
+					bufnr = bufnr,
+				})
+			end,
+		})
+	end
+
+	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+	set_keymaps(bufnr)
 end
 
 -- Language Server Configs
@@ -80,3 +84,12 @@ lspconfig.sumneko_lua.setup({
 	flags = lsp_flags,
 	capabilities = cmp_capabilities,
 })
+
+-- Exported
+
+M = {
+	on_attach = on_attach,
+	set_keymaps = set_keymaps,
+}
+
+return M
