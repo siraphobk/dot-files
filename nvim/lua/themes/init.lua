@@ -5,8 +5,8 @@ endif
 ]])
 
 require("themes.sonokai")
-require("themes.gruvbox-material")
 require("themes.lualine")
+-- require("themes.gruvbox-material")
 
 -- Uncomment to select default theme
 -- vim.cmd([[ colorscheme catppuccin ]])

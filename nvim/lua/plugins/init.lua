@@ -20,9 +20,32 @@ vim.cmd([[
   augroup end
 ]])
 
+vim.cmd([[packadd packer.nvim]])
+
+-- Fts
+local go_file_types = { "go", "gomod", "gosum", "gotmpl", "gohtmltmpl", "gotexttmpl" }
+local autotags_file_types = {
+	"html",
+	"javascript",
+	"typescript",
+	"javascriptreact",
+	"typescriptreact",
+	"svelte",
+	"vue",
+	"tsx",
+	"jsx",
+	"rescript",
+	"xml",
+	"php",
+	"markdown",
+	"glimmer",
+	"handlebars",
+	"hbs",
+}
+
 -- Start Packer
 return require("packer").startup(function(use)
-	use("wbthomason/packer.nvim")
+	use({ "wbthomason/packer.nvim", opt = true })
 
 	use({
 		"folke/which-key.nvim",
@@ -64,6 +87,8 @@ return require("packer").startup(function(use)
 
 	use({
 		"windwp/nvim-ts-autotag",
+		ft = autotags_file_types,
+		event = "InsertEnter",
 		config = function()
 			require("nvim-ts-autotag").setup({
 				autotag = {
@@ -75,6 +100,7 @@ return require("packer").startup(function(use)
 
 	use({
 		"windwp/nvim-autopairs",
+		event = "InsertEnter",
 		config = function()
 			require("nvim-autopairs").setup({})
 		end,
@@ -113,7 +139,6 @@ return require("packer").startup(function(use)
 			require("plugins.configs.nvim-cmp")
 		end,
 	})
-
 	-- Snippet engine (Required for completion engine)
 	use({ "L3MON4D3/LuaSnip" })
 	use({ "saadparwaiz1/cmp_luasnip" })
@@ -123,6 +148,7 @@ return require("packer").startup(function(use)
 		config = function()
 			require("gitsigns").setup()
 		end,
+		event = "BufEnter",
 	})
 
 	use({
@@ -138,15 +164,17 @@ return require("packer").startup(function(use)
 		config = function()
 			require("plugins.configs.go-nvim")
 		end,
+		ft = go_file_types,
 	})
-	use("ray-x/guihua.lua") -- recommended if need floating window support
+	use("ray-x/guihua.lua") -- floating windows
 
 	-- THEMES
 	use("sainnhe/sonokai")
-	use("sainnhe/gruvbox-material")
+	use({ "sainnhe/gruvbox-material", opt = true })
 	use({
 		"catppuccin/nvim",
 		as = "catppuccin",
+		opt = true,
 	})
 
 	use({
@@ -165,14 +193,46 @@ return require("packer").startup(function(use)
 	use({
 		"mfussenegger/nvim-dap",
 		run = "go install github.com/go-delve/delve/cmd/dlv@latest",
-		requires = {
-			{ "leoluz/nvim-dap-go" },
-			{ "rcarriga/nvim-dap-ui" },
-			{ "theHamsta/nvim-dap-virtual-text" },
+		cmd = {
+			"DapShowLog",
+			"DapStepOut",
+			"DapContinue",
+			"DapStepInto",
+			"DapStepOver",
+			"DapTerminate",
+			"DapToggleRepl",
+			"DapSetLogLevel",
+			"DapRestartFrame",
+			"DapLoadLaunchJSON",
+			"DapToggleBreakpoint",
 		},
 		config = function()
 			require("plugins.configs.dap")
 		end,
+		requires = {
+			{
+				"leoluz/nvim-dap-go",
+				ft = go_file_types,
+				after = "nvim-dap",
+				config = function()
+					require("dap-go").setup()
+				end,
+			},
+			{
+				"rcarriga/nvim-dap-ui",
+				after = "nvim-dap",
+				config = function()
+					require("plugins.configs.dapui")
+				end,
+			},
+			{
+				"theHamsta/nvim-dap-virtual-text",
+				after = "nvim-dap",
+				config = function()
+					require("nvim-dap-virtual-text").setup({})
+				end,
+			},
+		},
 	})
 
 	use({
@@ -180,6 +240,7 @@ return require("packer").startup(function(use)
 		run = function()
 			vim.fn["mkdp#util#install"]()
 		end,
+		cmd = "MarkdownPreview",
 	})
 
 	use({
@@ -189,7 +250,7 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	use("rust-lang/rust.vim")
+	use({ "rust-lang/rust.vim", ft = { "rust" } })
 
 	-- Dashboard
 	use({
@@ -205,6 +266,7 @@ return require("packer").startup(function(use)
 		config = function()
 			require("Comment").setup()
 		end,
+		event = { "InsertEnter", "ModeChanged" },
 	})
 
 	use({
@@ -222,7 +284,6 @@ return require("packer").startup(function(use)
 		requires = {
 			"nvim-lua/plenary.nvim",
 		},
-
 		config = function()
 			local spectre = require("spectre")
 			spectre.setup()
@@ -280,7 +341,10 @@ return require("packer").startup(function(use)
 	})
 
 	-- Performance
-	use("dstein64/vim-startuptime")
+	use({
+		"dstein64/vim-startuptime",
+		cmd = { "StartupTime" },
+	})
 
 	use({
 		"lewis6991/impatient.nvim",
