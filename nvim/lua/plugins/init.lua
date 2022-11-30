@@ -347,7 +347,7 @@ return require("packer").startup(function(use)
 		opt = true,
 		config = function()
 			vim.api.nvim_create_user_command("DuckHatch", function()
-				require("duck").hatch()
+				require("duck").hatch("🐞", 20)
 			end, {})
 			vim.api.nvim_create_user_command("DuckCook", function()
 				require("duck").cook()
