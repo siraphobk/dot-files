@@ -193,19 +193,6 @@ return require("packer").startup(function(use)
 	use({
 		"mfussenegger/nvim-dap",
 		run = "go install github.com/go-delve/delve/cmd/dlv@latest",
-		cmd = {
-			"DapShowLog",
-			"DapStepOut",
-			"DapContinue",
-			"DapStepInto",
-			"DapStepOver",
-			"DapTerminate",
-			"DapToggleRepl",
-			"DapSetLogLevel",
-			"DapRestartFrame",
-			"DapLoadLaunchJSON",
-			"DapToggleBreakpoint",
-		},
 		config = function()
 			require("plugins.configs.dap")
 		end,
