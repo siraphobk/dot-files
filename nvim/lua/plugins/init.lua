@@ -129,19 +129,25 @@ return require("packer").startup(function(use)
 	})
 
 	-- Completion engine
-	use({ "hrsh7th/cmp-nvim-lsp" })
-	use({ "hrsh7th/cmp-buffer" })
-	use({ "hrsh7th/cmp-path" })
-	use({ "hrsh7th/cmp-cmdline" })
 	use({
 		"hrsh7th/nvim-cmp",
 		config = function()
 			require("plugins.configs.nvim-cmp")
 		end,
 	})
+	use({ "hrsh7th/cmp-nvim-lsp" })
+	use({ "hrsh7th/cmp-buffer" })
+	use({ "hrsh7th/cmp-path" })
+	use({ "hrsh7th/cmp-cmdline" })
 	-- Snippet engine (Required for completion engine)
-	use({ "L3MON4D3/LuaSnip" })
-	use({ "saadparwaiz1/cmp_luasnip" })
+	use({
+		"L3MON4D3/LuaSnip",
+		config = function()
+			require("plugins.configs.luasnip")
+		end,
+		event = "InsertEnter",
+	})
+	use({ "saadparwaiz1/cmp_luasnip", after = "LuaSnip" })
 
 	use({
 		"lewis6991/gitsigns.nvim",
