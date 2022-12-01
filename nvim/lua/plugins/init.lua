@@ -227,7 +227,7 @@ return require("packer").startup(function(use)
 		run = function()
 			vim.fn["mkdp#util#install"]()
 		end,
-		cmd = "MarkdownPreview",
+		ft = { "markdown" },
 	})
 
 	use({
