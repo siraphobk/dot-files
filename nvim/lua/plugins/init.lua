@@ -334,6 +334,14 @@ return require("packer").startup(function(use)
 		config = function()
 			require("todo-comments").setup({})
 		end,
+
+		-- Examples
+		-- TODO: What else?
+		-- HACK: Weird code
+		-- FIX: Needs fixing
+		-- PERF: Fully optimised
+		-- WARNING: Beware, coders...
+		-- NOTE: Note to self
 	})
 
 	-- Performance
