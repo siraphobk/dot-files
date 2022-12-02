@@ -327,6 +327,14 @@ return require("packer").startup(function(use)
 			vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
 		end,
 	})
+	--
+	use({
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+		config = function()
+			require("todo-comments").setup({})
+		end,
+	})
 
 	-- Performance
 	use({
