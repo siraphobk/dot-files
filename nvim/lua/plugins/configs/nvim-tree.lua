@@ -25,14 +25,32 @@ require("nvim-tree").setup({
 })
 
 local nt_api = require("nvim-tree.api")
-local set = vim.keymap.set
+local wk_ok, wk = pcall(require, "which-key")
 
-set("n", "<leader>tt", function()
-	nt_api.tree.toggle()
-end)
-set("n", "<leader>tf", function()
-	nt_api.tree.find_file(vim.api.nvim_buf_get_name(0))
-end)
-set("n", "<leader>tF", function()
-	nt_api.tree.focus()
-end)
+if not wk_ok then
+	return
+end
+
+wk.register({
+	t = {
+		name = "Nvim-Tree",
+		t = {
+			function()
+				nt_api.tree.toggle()
+			end,
+			"Toggle",
+		},
+		f = {
+			function()
+				nt_api.tree.find_file(vim.api.nvim_buf_get_name(0))
+			end,
+			"Find File in the Tree",
+		},
+		F = {
+			function()
+				nt_api.tree.focus()
+			end,
+			"Focus on the Tree",
+		},
+	},
+}, { prefix = "<leader>" })
