@@ -53,7 +53,7 @@ local lsp_flags = {
 }
 
 local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-local servers = { "gopls", "rust_analyzer", "graphql", "tsserver" }
+local servers = { "gopls", "rust_analyzer", "graphql", "tsserver", "pyright" }
 
 for _, server in ipairs(servers) do
 	lspconfig[server].setup({

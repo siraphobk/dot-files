@@ -19,14 +19,29 @@ local function formatting(client, bufnr)
 	end
 end
 
+-- table_concat appends all elements of t2 to t1
+local function table_concat(t1, t2)
+	for _, value in ipairs(t2) do
+		table.insert(t1, value)
+	end
+end
+
+local sources = {
+	null_ls.builtins.formatting.stylua,
+	null_ls.builtins.completion.spell,
+	null_ls.builtins.formatting.prettierd,
+	null_ls.builtins.formatting.goimports,
+	null_ls.builtins.formatting.pg_format,
+}
+
+local python_sources = {
+	null_ls.builtins.formatting.autopep8,
+	null_ls.builtins.diagnostics.flake8,
+	null_ls.builtins.diagnostics.pydocstyle,
+}
+table_concat(sources, python_sources)
+
 null_ls.setup({
-	sources = {
-		null_ls.builtins.formatting.stylua,
-		-- null_ls.builtins.diagnostics.eslint,
-		null_ls.builtins.completion.spell,
-		null_ls.builtins.formatting.prettierd,
-		null_ls.builtins.formatting.goimports,
-		null_ls.builtins.formatting.pg_format,
-	},
+	sources = sources,
 	on_attach = formatting,
 })
