@@ -199,14 +199,6 @@ return require("packer").startup(function(use)
 		end,
 		requires = {
 			{
-				"leoluz/nvim-dap-go",
-				ft = go_file_types,
-				after = "nvim-dap",
-				config = function()
-					require("dap-go").setup()
-				end,
-			},
-			{
 				"rcarriga/nvim-dap-ui",
 				after = "nvim-dap",
 				config = function()
