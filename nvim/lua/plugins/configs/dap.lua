@@ -56,12 +56,12 @@ dap.configurations.go = {
 		mode = "remote",
 		host = "127.0.0.1",
 		port = 19090,
-		substitutePath = {
-			{
-				from = "${workspaceFolder}",
-				to = "/go/app",
-			},
-		},
+		-- substitutePath = {
+		-- 	{
+		-- 		from = "${workspaceFolder}",
+		-- 		to = "/go/app",
+		-- 	},
+		-- },
 		debugAdapter = "dlv-dap",
 	},
 }
