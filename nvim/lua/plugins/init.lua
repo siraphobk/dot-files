@@ -79,6 +79,12 @@ return require("packer").startup(function(use)
 		run = ":TSUpdate",
 		requires = {
 			{ "nvim-treesitter/nvim-treesitter-context" },
+			{
+				"nvim-treesitter/nvim-treesitter-textobjects",
+				config = function()
+					require("plugins.configs.treesitter-textobjects")
+				end,
+			},
 		},
 		config = function()
 			require("plugins.configs.treesitter")
