@@ -92,6 +92,13 @@ return require("packer").startup(function(use)
 	})
 
 	use({
+		"kylechui/nvim-surround",
+		config = function()
+			require("nvim-surround").setup({})
+		end,
+	})
+
+	use({
 		"windwp/nvim-ts-autotag",
 		ft = autotags_file_types,
 		event = "InsertEnter",
