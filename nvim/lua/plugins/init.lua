@@ -358,6 +358,13 @@ return require("packer").startup(function(use)
 		-- NOTE: Note to self
 	})
 
+	use({
+		"folke/zen-mode.nvim",
+		config = function()
+			require("zen-mode").setup({})
+		end,
+	})
+
 	-- Performance
 	use({
 		"dstein64/vim-startuptime",
