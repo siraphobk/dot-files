@@ -144,6 +144,9 @@ return require("packer").startup(function(use)
 	-- Completion engine
 	use({
 		"hrsh7th/nvim-cmp",
+		requires = {
+			{ "onsails/lspkind.nvim" },
+		},
 		config = function()
 			require("plugins.configs.nvim-cmp")
 		end,
