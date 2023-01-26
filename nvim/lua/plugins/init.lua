@@ -171,6 +171,9 @@ return require("packer").startup(function(use)
 		end,
 		event = "BufEnter",
 	})
+	use({
+		"tpope/vim-fugitive",
+	})
 
 	use({
 		"akinsho/toggleterm.nvim",
