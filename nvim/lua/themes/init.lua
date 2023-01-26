@@ -4,11 +4,60 @@ vim.cmd([[
   endif
 ]])
 
--- require("themes.sonokai")
-require("themes.gruvbox-material")
 require("themes.lualine")
 
--- Uncomment to select default theme
--- vim.cmd([[ colorscheme catppuccin ]])
--- vim.cmd([[ colorscheme sonokai ]])
-vim.cmd([[ colorscheme gruvbox-material ]])
+require("catppuccin").setup({
+	flavour = "mocha", -- latte, frappe, macchiato, mocha
+	background = { -- :h background
+		light = "latte",
+		dark = "mocha",
+	},
+	transparent_background = false,
+	show_end_of_buffer = true, -- show the '~' characters after the end of buffers
+	term_colors = false,
+	dim_inactive = {
+		enabled = true,
+		shade = "dark",
+		percentage = 0.50,
+	},
+	no_italic = false, -- Force no italic
+	no_bold = false, -- Force no bold
+	styles = {
+		comments = { "italic" },
+		conditionals = { "italic" },
+		loops = {},
+		functions = { "bold" },
+		keywords = {},
+		strings = {},
+		variables = {},
+		numbers = {},
+		booleans = {},
+		properties = {},
+		types = {},
+		operators = {},
+	},
+	color_overrides = {
+		mocha = {
+			base = "#111111",
+		},
+	},
+	custom_highlights = {},
+	integrations = {
+		cmp = true,
+		gitsigns = true,
+		nvimtree = true,
+		telescope = true,
+		notify = false,
+		mini = false,
+		barbar = true,
+		mason = true,
+		lsp_trouble = true,
+		dap = true,
+		treesitter_context = true,
+		which_key = true,
+	},
+})
+
+-- setup must be called before loading
+vim.cmd.colorscheme("catppuccin")
+vim.cmd([[ colorscheme catppuccin ]])
