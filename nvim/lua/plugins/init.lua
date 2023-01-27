@@ -120,10 +120,11 @@ return require("packer").startup(function(use)
 	})
 
 	use({
-		"romgrk/barbar.nvim",
-		requires = { { "kyazdani42/nvim-web-devicons" } },
+		"akinsho/bufferline.nvim",
+		tag = "v3.*",
+		requires = "nvim-tree/nvim-web-devicons",
 		config = function()
-			require("plugins.configs.barbar")
+			require("plugins.configs.bufferline")
 		end,
 	})
 
@@ -257,12 +258,11 @@ return require("packer").startup(function(use)
 
 	use({ "rust-lang/rust.vim", ft = { "rust" } })
 
-	-- Dashboard
 	use({
 		"goolord/alpha-nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
+		requires = { "nvim-tree/nvim-web-devicons" },
 		config = function()
-			require("alpha").setup(require("alpha.themes.startify").config)
+			require("plugins.configs.dashboard")
 		end,
 	})
 
@@ -284,12 +284,24 @@ return require("packer").startup(function(use)
 	})
 
 	use({
-		"rmagatti/auto-session",
+		"folke/persistence.nvim",
+		event = "BufReadPre",
+		module = "persistence",
 		config = function()
-			require("auto-session").setup({
-				log_level = "error",
-				auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-			})
+			require("persistence").setup()
+			-- restore the session for the current directory
+			vim.api.nvim_set_keymap("n", "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], {})
+
+			-- restore the last session
+			vim.api.nvim_set_keymap(
+				"n",
+				"<leader>ql",
+				[[<cmd>lua require("persistence").load({ last = true })<cr>]],
+				{}
+			)
+
+			-- stop Persistence => session won't be saved on exit
+			vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {})
 		end,
 	})
 
