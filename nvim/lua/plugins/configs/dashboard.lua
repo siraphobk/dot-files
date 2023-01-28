@@ -37,8 +37,7 @@ dashboard.section.buttons.val = {
 
 -- Set footer
 dashboard.section.footer.val = {
-  '" I Just wanna be happy ',
-  '          🚀            "',
+  "Waku waku uwu! 🚀",
 }
 
 -- Send config to alpha
