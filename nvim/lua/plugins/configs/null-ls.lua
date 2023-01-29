@@ -27,11 +27,10 @@ local function table_concat(t1, t2)
 end
 
 local sources = {
-  null_ls.builtins.formatting.stylua,
-  null_ls.builtins.completion.spell,
   null_ls.builtins.formatting.prettierd,
   null_ls.builtins.formatting.goimports,
   null_ls.builtins.formatting.pg_format,
+  null_ls.builtins.completion.spell,
 }
 
 local python_sources = {
