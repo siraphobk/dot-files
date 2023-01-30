@@ -4,9 +4,10 @@ local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local function lsp_formatting(bufnr)
   vim.lsp.buf.format({
     bufnr = bufnr,
-    filter = function(c) -- client as an argument
-      return c.name == "null-ls"
-    end,
+    -- Uncomment below code to use "null-ls" as the the only formatter
+    -- filter = function(c) -- client as an argument
+    --   return c.name == "null-ls"
+    -- end,
   })
 end
 
