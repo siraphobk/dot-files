@@ -25,10 +25,6 @@ set.cc = { 80, 120 }
 set.swapfile = false
 set.backspace = "indent,start,eol"
 set.wrap = false
-set.foldmethod = "expr"
-set.foldexpr = "nvim_treesitter#foldexpr()"
-set.foldenable = false
-set.foldlevel = 99
 set.confirm = true
 
 vim.cmd([[ set signcolumn=yes:2 ]])
