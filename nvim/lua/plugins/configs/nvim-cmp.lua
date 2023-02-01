@@ -7,6 +7,11 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+-- NOTE: Copilot pre-configuration
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+vim.g.copilot_tab_fallback = ""
+
 cmp.setup({
   formatting = {
     format = lspkind.cmp_format({
@@ -17,7 +22,6 @@ cmp.setup({
         luasnip = "[LuaSnip]",
         nvim_lua = "[Lua]",
         latex_symbols = "[Latex]",
-        cmp_tabnine = "[TabNine]", -- AI-Assisted code completion
       },
     }),
   },
@@ -56,12 +60,20 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
+    ["<C-j>"] = cmp.mapping(function(fallback)
+      cmp.mapping.abort()
+      local copilot_keys = vim.fn["copilot#Accept"]()
+      if copilot_keys ~= "" then
+        vim.api.nvim_feedkeys(copilot_keys, "i", true)
+      else
+        fallback()
+      end
+    end),
   }),
   sources = cmp.config.sources(
     {
       { name = "nvim_lsp" },
       { name = "luasnip" },
-      { name = "cmp_tabnine" },
     },
     {
       { name = "buffer" },
@@ -93,21 +105,4 @@ cmp.setup.cmdline(":", {
   }, {
     { name = "cmdline" },
   }),
-})
-
--- NOTE: For Tabnine AI-Assisted Code Completion
-local cmp_tabnine = require('cmp_tabnine.config')
-
-cmp_tabnine:setup({
-  max_lines = 1000,
-  max_num_results = 20,
-  sort = true,
-  run_on_every_keystroke = true,
-  snippet_placeholder = '..',
-  ignored_file_types = {
-    -- default is not to ignore
-    -- uncomment to ignore in lua:
-    -- lua = true
-  },
-  show_prediction_strength = false
 })
