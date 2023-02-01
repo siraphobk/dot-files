@@ -23,6 +23,11 @@ local set_keymaps = function(bufnr)
   vim.keymap.set("n", "<leader>F", function()
     vim.lsp.buf.format({ async = true })
   end, bufopts)
+
+  -- NOTE: Requires "ufo" folding plugins
+  -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+  vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+  vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
 end
 
 local group = vim.api.nvim_create_augroup("Format", { clear = true })
@@ -55,6 +60,14 @@ local lsp_flags = {
 }
 
 local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+-- NOTE: Requires ufo folding plugin
+-- Handling folding (see https://github.com/kevinhwang91/nvim-ufo#setup-and-description)
+cmp_capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
+
 local servers = { "gopls", "rust_analyzer", "graphql", "tsserver", "pyright" }
 
 for _, server in ipairs(servers) do
@@ -86,6 +99,9 @@ lspconfig.sumneko_lua.setup({
   flags = lsp_flags,
   capabilities = cmp_capabilities,
 })
+
+-- NOTE: Require ufo folding plugin
+require('ufo').setup()
 
 -- Exported
 
