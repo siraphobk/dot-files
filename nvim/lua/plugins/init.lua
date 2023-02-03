@@ -1,3 +1,6 @@
+-- Load some plugins outside of Packer
+require("plugins.configs.copilot")
+
 -- Auto-install Packer
 local ensure_packer = function()
   local fn = vim.fn
