@@ -22,6 +22,8 @@ local config = {
   },
 }
 
+vim.api.nvim_create_user_command("DapUI", "lua require('dapui').toggle()", {})
+
 dapui.setup(config)
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
