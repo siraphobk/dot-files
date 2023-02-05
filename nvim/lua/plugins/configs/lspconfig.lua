@@ -64,8 +64,8 @@ local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 -- NOTE: Requires ufo folding plugin
 -- Handling folding (see https://github.com/kevinhwang91/nvim-ufo#setup-and-description)
 cmp_capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true
+  dynamicRegistration = false,
+  lineFoldingOnly = true
 }
 
 local servers = { "gopls", "rust_analyzer", "graphql", "tsserver", "pyright" }

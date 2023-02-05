@@ -168,23 +168,6 @@ return require("packer").startup(function(use)
   })
   use({ "saadparwaiz1/cmp_luasnip" })
 
-  -- -- AI-assisted code completion
-  -- use {
-  --   "codota/tabnine-nvim",
-  --   run = "./dl_binaries.sh",
-  --   config = function()
-  --     require("tabnine").setup({
-  --       disable_auto_comment = true,
-  --       accept_keymap = "<Tab>",
-  --       dismiss_keymap = "<C-]>",
-  --       debounce_ms = 300,
-  --       suggestion_color = { gui = "#808080", cterm = 244 },
-  --       execlude_filetypes = { "TelescopePrompt" }
-  --     })
-  --   end
-  -- }
-  -- use { "tzachar/cmp-tabnine", run = "./install.sh" }
-
   use({
     "lewis6991/gitsigns.nvim",
     config = function()
@@ -406,13 +389,6 @@ return require("packer").startup(function(use)
   })
 
   use({
-    "folke/zen-mode.nvim",
-    config = function()
-      require("zen-mode").setup({})
-    end,
-  })
-
-  use({
     'kevinhwang91/nvim-ufo',
     requires = 'kevinhwang91/promise-async',
     config = function()
@@ -430,21 +406,6 @@ return require("packer").startup(function(use)
     "lewis6991/impatient.nvim",
     config = function()
       require("impatient")
-    end,
-  })
-
-  -- Shenanigans
-  use({ "eandrju/cellular-automaton.nvim", cmd = { "CellularAutomaton" }, opt = true })
-  use({
-    "tamton-aquib/duck.nvim",
-    opt = true,
-    config = function()
-      vim.api.nvim_create_user_command("DuckHatch", function()
-        require("duck").hatch("🐞", 20)
-      end, {})
-      vim.api.nvim_create_user_command("DuckCook", function()
-        require("duck").cook()
-      end, {})
     end,
   })
 

@@ -1,7 +1,8 @@
 -- dap should be setup before executing this function
 local dap = require("dap")
 local dapui = require("dapui")
-dapui.setup({
+
+local config = {
   layouts = {
     {
       elements = {
@@ -19,16 +20,22 @@ dapui.setup({
       position = "bottom",
     },
   },
-})
+}
+
+dapui.setup(config)
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open({
     reset = true,
   })
 end
+
 dap.listeners.before.event_terminated["dapui_config"] = function()
   dapui.close({})
+  dapui.setup(config)
 end
+
 dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close({})
+  dapui.setup(config)
 end
