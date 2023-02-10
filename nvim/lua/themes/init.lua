@@ -1,12 +1,12 @@
-vim.cmd([[
+vim.cmd [[
   if has('termguicolors')
     set termguicolors
   endif
-]])
+]]
 
 require("catppuccin").setup({
   flavour = "mocha", -- latte, frappe, macchiato, mocha
-  background = { -- :h background
+  background = {
     light = "latte",
     dark = "mocha",
   },
@@ -14,7 +14,7 @@ require("catppuccin").setup({
   show_end_of_buffer = true, -- show the '~' characters after the end of buffers
   term_colors = false,
   dim_inactive = {
-    enabled = true,
+    enabled = false,
     shade = "dark",
     percentage = 0.50,
   },
@@ -36,7 +36,7 @@ require("catppuccin").setup({
   },
   color_overrides = {
     mocha = {
-      base = "#111111",
+      base = "#000000",
     },
   },
   custom_highlights = {},
