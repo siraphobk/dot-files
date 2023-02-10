@@ -175,7 +175,7 @@ return {
   { "sainnhe/sonokai" },
   { "sainnhe/gruvbox-material" },
   "folke/tokyonight.nvim",
-  { "catppuccin/nvim", as = "catppuccin" },
+  { "catppuccin/nvim", name = "catppuccin" },
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons", opt = true },

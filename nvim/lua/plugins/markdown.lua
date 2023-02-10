@@ -6,7 +6,7 @@ return {
         "mzlogin/vim-markdown-toc",
       },
     },
-    run = function()
+    build = function()
       vim.fn["mkdp#util#install"]()
     end,
     ft = { "markdown" },

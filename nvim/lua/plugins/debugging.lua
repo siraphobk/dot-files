@@ -124,14 +124,12 @@ return {
     dependencies = {
       {
         "rcarriga/nvim-dap-ui",
-        after = "nvim-dap",
         config = function()
           dapui_setup()
         end,
       },
       {
         "theHamsta/nvim-dap-virtual-text",
-        after = "nvim-dap",
         config = function()
           require("nvim-dap-virtual-text").setup({})
         end,
