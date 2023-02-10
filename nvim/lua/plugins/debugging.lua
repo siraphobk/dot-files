@@ -1,3 +1,4 @@
+local function dap_setup()
 -- launch.json attributes <https://github.com/golang/vscode-go/blob/master/docs/debugging.md#launchjson-attributes>
 -- VSCode Golang debugging <https://github.com/golang/vscode-go/blob/master/docs/debugging.md>
 
@@ -64,4 +65,74 @@ dap.configurations.go = {
 		-- },
 		debugAdapter = "dlv-dap",
 	},
+}
+end
+
+
+return {
+  {
+    "mfussenegger/nvim-dap",
+    build = "go install github.com/go-delve/delve/cmd/dlv@latest",
+    config = function()
+      dap_setup()
+    end,
+    dependencies = {
+      {
+        "rcarriga/nvim-dap-ui",
+        after = "nvim-dap",
+        config = function()
+-- dap should be setup before executing this function
+local dap = require("dap")
+local dapui = require("dapui")
+
+local config = {
+  layouts = {
+    {
+      elements = {
+        { id = "scopes", size = 0.25 },
+        "breakpoints",
+        "stacks",
+        "watches",
+      },
+      size = 40,
+      position = "left",
+    },
+    {
+      elements = { "repl" },
+      size = 0.25, -- 25% of total lines
+      position = "bottom",
+    },
+  },
+}
+
+vim.api.nvim_create_user_command("DapUI", "lua require('dapui').toggle()", {})
+
+dapui.setup(config)
+
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open({
+    reset = true,
+  })
+end
+
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close({})
+  dapui.setup(config)
+end
+
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close({})
+  dapui.setup(config)
+end
+        end,
+      },
+      {
+        "theHamsta/nvim-dap-virtual-text",
+        after = "nvim-dap",
+        config = function()
+          require("nvim-dap-virtual-text").setup({})
+        end,
+      },
+    },
+  },
 }

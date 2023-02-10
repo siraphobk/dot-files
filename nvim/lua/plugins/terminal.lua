@@ -1,3 +1,8 @@
+return {
+  {
+    "akinsho/toggleterm.nvim",
+    version = "*",
+    config = function()
 require("toggleterm").setup({
 	open_mapping = [[<c-\>]],
 	hide_numbers = true, -- hide the number column in toggleterm buffers
@@ -16,3 +21,6 @@ require("toggleterm").setup({
 		border = "curved", -- 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
 	},
 })
+    end,
+  }
+}
