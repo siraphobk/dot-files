@@ -4,7 +4,13 @@ return {
   {
     "ray-x/go.nvim",
     config = function()
-      require("plugins.configs.go-nvim")
+      local p_lsp = require("plugins.configs.lspconfig") -- internal plugin import
+
+      require("go").setup({
+        luasnip = true,
+        lsp_keymaps = p_lsp.set_keymaps,
+        dap_debug = false
+      })
     end,
     ft = go_file_types,
   },

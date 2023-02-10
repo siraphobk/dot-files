@@ -17,6 +17,22 @@ local autotags_file_types = {
   "hbs",
 }
 
+local function lua_snip_setup()
+  -- Abandon snippet when leave insert mode
+  local function leave_snippet()
+    if ((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
+        and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
+        and not require("luasnip").session.jump_active
+    then
+      require("luasnip").unlink_current()
+    end
+  end
+
+  vim.api.nvim_create_autocmd({ "ModeChanged" }, {
+    callback = leave_snippet,
+  })
+end
+
 local function nvim_cmp_setup()
   local cmp = require("cmp")
   local luasnip = require("luasnip")
@@ -123,6 +139,80 @@ local function nvim_cmp_setup()
   })
 end
 
+local function ufo_setup()
+  vim.o.foldcolumn = '1' -- '0' is not bad
+  vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+  vim.o.foldlevelstart = 99
+  vim.o.foldenable = true
+end
+
+local function trouble_setup()
+  require("trouble").setup({})
+
+  vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
+  vim.keymap.set(
+    "n",
+    "<leader>xw",
+    "<cmd>TroubleToggle workspace_diagnostics<cr>",
+    { silent = true, noremap = true }
+  )
+  vim.keymap.set(
+    "n",
+    "<leader>xd",
+    "<cmd>TroubleToggle document_diagnostics<cr>",
+    { silent = true, noremap = true }
+  )
+
+  vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { silent = true, noremap = true })
+  vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
+  vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
+end
+
+local function spectre_setup()
+  local spectre = require("spectre")
+  spectre.setup()
+
+  vim.keymap.set("n", "<leader>So", function()
+    spectre.open()
+  end)
+  vim.keymap.set("n", "<leader>Sw", function()
+    spectre.open_visual({ select_word = true })
+  end)
+  vim.keymap.set("n", "<leader>Sf", function()
+    spectre.open_file_search()
+  end)
+end
+
+local function persistence_setup()
+  require("persistence").setup()
+  -- restore the session for the current directory
+  vim.api.nvim_set_keymap("n", "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], {})
+
+  -- restore the last session
+  vim.api.nvim_set_keymap(
+    "n",
+    "<leader>ql",
+    [[<cmd>lua require("persistence").load({ last = true })<cr>]],
+    {}
+  )
+
+  -- stop Persistence => session won't be saved on exit
+  vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {})
+end
+
+local function comment_setup()
+  require("Comment").setup({
+    toggler = {
+      line = "<leader>gc",
+      block = "<leader>gb",
+    },
+    opleader = {
+      line = "<leader>gc",
+      block = "<leader>gb",
+    },
+  })
+end
+
 return {
   {
     "kylechui/nvim-surround",
@@ -135,11 +225,7 @@ return {
     ft = autotags_file_types,
     event = "InsertEnter",
     config = function()
-      require("nvim-ts-autotag").setup({
-        autotag = {
-          enable = true,
-        },
-      })
+      require("nvim-ts-autotag").setup({ autotag = { enable = true, } })
     end,
   },
   {
@@ -164,23 +250,12 @@ return {
   { "hrsh7th/cmp-buffer" },
   { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-cmdline" },
+
   -- Snippet engine (Required for completion engine)
   {
     "L3MON4D3/LuaSnip",
     config = function()
-      -- Abandon snippet when leave insert mode
-      local function leave_snippet()
-        if ((vim.v.event.old_mode == "s" and vim.v.event.new_mode == "n") or vim.v.event.old_mode == "i")
-            and require("luasnip").session.current_nodes[vim.api.nvim_get_current_buf()]
-            and not require("luasnip").session.jump_active
-        then
-          require("luasnip").unlink_current()
-        end
-      end
-
-      vim.api.nvim_create_autocmd({ "ModeChanged" }, {
-        callback = leave_snippet,
-      })
+      lua_snip_setup()
     end,
   },
   { "saadparwaiz1/cmp_luasnip" },
@@ -194,16 +269,7 @@ return {
   {
     "numToStr/Comment.nvim",
     config = function()
-      require("Comment").setup({
-        toggler = {
-          line = "<leader>gc",
-          block = "<leader>gb",
-        },
-        opleader = {
-          line = "<leader>gc",
-          block = "<leader>gb",
-        },
-      })
+      comment_setup()
     end,
     event = { "InsertEnter", "ModeChanged" },
   },
@@ -212,20 +278,7 @@ return {
     event = "BufReadPre",
     module = "persistence",
     config = function()
-      require("persistence").setup()
-      -- restore the session for the current directory
-      vim.api.nvim_set_keymap("n", "<leader>qs", [[<cmd>lua require("persistence").load()<cr>]], {})
-
-      -- restore the last session
-      vim.api.nvim_set_keymap(
-        "n",
-        "<leader>ql",
-        [[<cmd>lua require("persistence").load({ last = true })<cr>]],
-        {}
-      )
-
-      -- stop Persistence => session won't be saved on exit
-      vim.api.nvim_set_keymap("n", "<leader>qd", [[<cmd>lua require("persistence").stop()<cr>]], {})
+      persistence_setup()
     end,
   },
   {
@@ -234,18 +287,7 @@ return {
       "nvim-lua/plenary.nvim",
     },
     config = function()
-      local spectre = require("spectre")
-      spectre.setup()
-
-      vim.keymap.set("n", "<leader>So", function()
-        spectre.open()
-      end)
-      vim.keymap.set("n", "<leader>Sw", function()
-        spectre.open_visual({ select_word = true })
-      end)
-      vim.keymap.set("n", "<leader>Sf", function()
-        spectre.open_file_search()
-      end)
+      spectre_setup()
     end,
   },
   {
@@ -258,35 +300,14 @@ return {
     "folke/trouble.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
-      require("trouble").setup({})
-
-      vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
-      vim.keymap.set(
-        "n",
-        "<leader>xw",
-        "<cmd>TroubleToggle workspace_diagnostics<cr>",
-        { silent = true, noremap = true }
-      )
-      vim.keymap.set(
-        "n",
-        "<leader>xd",
-        "<cmd>TroubleToggle document_diagnostics<cr>",
-        { silent = true, noremap = true }
-      )
-
-      vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { silent = true, noremap = true })
-      vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
-      vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
+      trouble_setup()
     end,
   },
   {
     'kevinhwang91/nvim-ufo',
     dependencies = 'kevinhwang91/promise-async',
     config = function()
-      vim.o.foldcolumn = '1' -- '0' is not bad
-      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-      vim.o.foldlevelstart = 99
-      vim.o.foldenable = true
+      ufo_setup()
     end
   }
 }
