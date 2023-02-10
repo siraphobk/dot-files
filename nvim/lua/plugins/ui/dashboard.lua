@@ -48,12 +48,23 @@ local anya_cute_face = {
   "⣿⣿⣿⣿⣿⣿⣿⣿⣽⣳⢦⣀⠀⠀⠀⠀⠀⠹⡏⠁⠉⠓⠦⣉⡉⠛⣙⣩⠵⢚⠩⠳⣽⣽⣼⣿⣾⣷⣷⣿⣿⠆⠀⠀⠀⣠⣾⣻⣾⣿",
 }
 
+local neovim_text_1 = {
+  "                                                  ",
+  "███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗",
+  "████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║",
+  "██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║",
+  "██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║",
+  "██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║",
+  "╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝",
+  "                                                  "
+}
+
 local function dashboard_setup()
   local alpha = require("alpha")
   local dashboard = require("alpha/themes/dashboard")
 
   -- Set header
-  dashboard.section.header.val = anya_cute_face
+  dashboard.section.header.val = neovim_text_1
 
   -- Set menu
   dashboard.section.buttons.val = {
@@ -67,7 +78,13 @@ local function dashboard_setup()
 
   -- Set footer
   dashboard.section.footer.val = {
-    "( ≖ ‿ ≖ ) HEH~",
+    "",
+    "",
+    "\" Wherever smart people work, doors are unlocked. \"",
+    "                                                   ",
+    "                             - Steve Wozniak       ",
+    "",
+    "",
   }
 
   -- Send config to alpha
