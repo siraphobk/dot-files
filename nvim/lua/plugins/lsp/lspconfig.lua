@@ -79,7 +79,7 @@ local function lspconfig_setup()
     })
   end
 
-  lspconfig.sumneko_lua.setup({
+  lspconfig.lua_ls.setup({
     settings = {
       Lua = {
         runtime = {
