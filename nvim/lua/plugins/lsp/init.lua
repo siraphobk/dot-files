@@ -17,4 +17,12 @@ return {
       require("plugins.lsp.null-ls").configure()
     end,
   },
+  {
+    "ray-x/go.nvim",
+    config = function()
+      require("plugins.lsp.go").configure()
+    end,
+    ft = require("plugins.lsp.go").ft,
+  },
+  { "ray-x/guihua.lua" }
 }

@@ -27,16 +27,12 @@ local set_keymaps = function(bufnr)
 end
 
 return {
-  {
-    "ray-x/go.nvim",
-    config = function()
-      require("go").setup({
-        luasnip = true,
-        lsp_keymaps = set_keymaps,
-        dap_debug = false
-      })
-    end,
-    ft = go_file_types,
-  },
-  { "ray-x/guihua.lua" }
+  configure = function()
+    require("go").setup({
+      luasnip = true,
+      lsp_keymaps = set_keymaps,
+      dap_debug = false
+    })
+  end,
+  ft = go_file_types,
 }
