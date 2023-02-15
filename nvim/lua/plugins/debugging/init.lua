@@ -3,13 +3,13 @@ return {
     "mfussenegger/nvim-dap",
     build = "go install github.com/go-delve/delve/cmd/dlv@latest",
     config = function()
-      require("plugins.debugging.dap").configure()
+      require("plugins.debugging.dap")
     end,
     dependencies = {
       {
         "rcarriga/nvim-dap-ui",
         config = function()
-          require("plugins.debugging.dapui").configure()
+          require("plugins.debugging.dapui")
         end,
       },
       {
