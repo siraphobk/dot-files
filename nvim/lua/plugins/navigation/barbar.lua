@@ -43,7 +43,13 @@ map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', opts)
 -- :BarbarDisable - very bad command, should never be used
 
 -- Set barbar's options
-require('bufferline').setup()
+require('bufferline').setup({
+  icon_separator_active = '▌',
+  icon_separator_inactive = '┆',
+  icon_close_tab = '',
+  icon_close_tab_modified = '●',
+  icon_pinned = '車',
+})
 
 -- NVIM-TREE integration
 local nvim_tree_events = require('nvim-tree.events')
