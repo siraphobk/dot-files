@@ -59,12 +59,40 @@ local neovim_text_1 = {
   "                                                  "
 }
 
+local apiplus_logo = {
+  "                                                                                ",
+  "                                       :!:                                      ",
+  "                                      ^JYJ:                                     ",
+  "                                     ~YYYYY^                                    ",
+  "                                    !5YYYYYY~                                   ",
+  "                                   7555YYYYYY!                                  ",
+  "                                  ?5555555YYY5!                                 ",
+  "                                .JP555555555YY5!                                ",
+  "                               :YP5555555555555Y.                               ",
+  "                              :5PPP555555555555Y.                               ",
+  "                             ^5PPPPPPP555555555~                                ",
+  "                            !PPPPPPPPPPPP5555P7                                 ",
+  "                           7GGPPPPPPPPPPPPPP5~      .:                          ",
+  "                          ?GGGGPPPPPPPPPPPPJ:      :~!^                         ",
+  "                        .JGGGGGGGGPPPPPPPY^     .:~!!!!^                        ",
+  "                       .YGGGGGGGGGGGGGPY~     :^~~~~~~~!^                       ",
+  "                      :5GGGGGGGGGGGGPJ^   .:^^~~~~~~~~~~~^.                     ",
+  "                     ^5GGGGGGGGGGGY!.  .:^^~~~~~~~~~~~~~~~^.                    ",
+  "                    ~PGGGGGGGGG57^..:^~!!!!!!!!!!!!!!!~~~~~~.                   ",
+  "                   !PGGGGGGG5?~::~!!!!!!!!!!!!!!!!!!~~~~~~~~~.                  ",
+  "                  7GGGGGG5J!~~!!!!!!!!!!!!!!!!!!!!!!~~~~~~~~~^:                 ",
+  "                 ?GGGP5J!~^^^^::.....       .....:::^^^^~~~~^^^:                ",
+  "               .YGPJ7^:..                               ...::^^^:               ",
+  "              .77^.                                            .:.              ",
+  "                                                                                "
+}
+
 local function dashboard_setup()
   local alpha = require("alpha")
   local dashboard = require("alpha/themes/dashboard")
 
   -- Set header
-  dashboard.section.header.val = neovim_text_1
+  dashboard.section.header.val = apiplus_logo
 
   -- Set menu
   dashboard.section.buttons.val = {
