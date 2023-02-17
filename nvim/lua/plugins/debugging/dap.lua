@@ -1,4 +1,3 @@
-require('dap.ext.vscode').load_launchjs(nil, {}) -- load .vscode/launch.json
 local dap = require("dap")
 
 -- GO Configuration ------------------------------------------------------------
