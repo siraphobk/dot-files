@@ -124,4 +124,11 @@ return {
       }
     end
   },
+  {
+    "phaazon/hop.nvim",
+    branch = "v2",
+    config = function()
+      require("plugins.text-editing.hop")
+    end
+  },
 }
