@@ -2,7 +2,7 @@ return {
   -- Themes --------------------------------------------------------------------
   { "sainnhe/gruvbox-material" },
   { "folke/tokyonight.nvim" },
-  { "catppuccin/nvim", name = "catppuccin" },
+  { "catppuccin/nvim",         name = "catppuccin" },
 
   -- Other ---------------------------------------------------------------------
   {
@@ -34,4 +34,14 @@ return {
     -- WARNING: Beware, coders...
     -- NOTE: Note to self
   },
+  {
+    "folke/zen-mode.nvim",
+    config = function()
+      require("zen-mode").setup({
+        window = {
+          width = 0.70,
+        }
+      })
+    end
+  }
 }
