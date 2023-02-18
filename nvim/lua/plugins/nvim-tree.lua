@@ -1,4 +1,4 @@
-local function nvim_tree_setup()
+local function setup()
   -- disable netrw at the very start of your init.lua (strongly advised)
   vim.g.loaded_netrw = 1
   vim.g.loaded_netrwPlugin = 1
@@ -12,6 +12,11 @@ local function nvim_tree_setup()
     },
     renderer = {
       group_empty = true,
+      add_trailing = true,
+      highlight_opened_files = "all",
+      indent_markers = {
+        enable = true,
+      },
     },
     filters = {
       dotfiles = false,
@@ -65,7 +70,7 @@ return {
     },
     name = "nvim-tree-nvim-web-devicons",
     config = function()
-      nvim_tree_setup()
+      setup()
     end,
   },
 }

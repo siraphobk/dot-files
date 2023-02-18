@@ -1,19 +1,22 @@
 return {
+  -- Themes --------------------------------------------------------------------
   { "sainnhe/gruvbox-material" },
-  "folke/tokyonight.nvim",
+  { "folke/tokyonight.nvim" },
   { "catppuccin/nvim", name = "catppuccin" },
+
+  -- Other ---------------------------------------------------------------------
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons", opt = true },
     config = function()
-      require("plugins.ui.lualine").configure()
+      require("plugins.ui.lualine")
     end,
   },
   {
     "goolord/alpha-nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require("plugins.ui.dashboard").configure()
+      require("plugins.ui.dashboard")
     end,
   },
   {

@@ -1,4 +1,4 @@
-local function toggleterm_setup()
+local function setup()
   require("toggleterm").setup({
     open_mapping = [[<c-\>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers
@@ -24,7 +24,7 @@ return {
     "akinsho/toggleterm.nvim",
     version = "*",
     config = function()
-      toggleterm_setup()
+      setup()
     end,
   }
 }

@@ -47,7 +47,7 @@ return {
       { "onsails/lspkind.nvim" },
     },
     config = function()
-      require("plugins.text-editing.cmp").configure()
+      require("plugins.text-editing.cmp")
     end,
   },
   { "hrsh7th/cmp-nvim-lsp" },
@@ -58,8 +58,12 @@ return {
   -- Snippet engine (Required for completion engine)
   {
     "L3MON4D3/LuaSnip",
+    -- follow latest release.
+    version = "<CurrentMajor>.*",
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp",
     config = function()
-      require("plugins.text-editing.luasnip").configure()
+      require("plugins.text-editing.luasnip")
     end,
   },
   { "saadparwaiz1/cmp_luasnip" },
@@ -73,7 +77,7 @@ return {
   {
     "numToStr/Comment.nvim",
     config = function()
-      require("plugins.text-editing.comment").configure()
+      require("plugins.text-editing.comment")
     end,
     event = { "InsertEnter", "ModeChanged" },
   },
@@ -82,7 +86,7 @@ return {
     event = "BufReadPre",
     module = "persistence",
     config = function()
-      require("plugins.text-editing.persistence").configure()
+      require("plugins.text-editing.persistence")
     end,
   },
   {
@@ -91,7 +95,7 @@ return {
       "nvim-lua/plenary.nvim",
     },
     config = function()
-      require("plugins.text-editing.spectre").configure()
+      require("plugins.text-editing.spectre")
     end,
   },
   {
@@ -104,14 +108,14 @@ return {
     "folke/trouble.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
-      require("plugins.text-editing.trouble").configure()
+      require("plugins.text-editing.trouble")
     end,
   },
   {
     'kevinhwang91/nvim-ufo',
     dependencies = 'kevinhwang91/promise-async',
     config = function()
-      require("plugins.text-editing.ufo").configure()
+      require("plugins.text-editing.ufo")
     end
   },
   {
