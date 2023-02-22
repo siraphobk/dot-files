@@ -15,6 +15,16 @@ require('lspconfig.ui.windows').default_options = {
 
 local opts = { noremap = true, silent = true }
 
+vim.diagnostic.config({
+  underline = true,
+  virtual_text = true,
+  signs = true,
+  float = {
+    border = "rounded",
+    header = "-- Diagnostic --"
+  },
+})
+
 vim.keymap.set("n", "<leader>do", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
