@@ -46,7 +46,16 @@ cmp_capabilities.textDocument.foldingRange = {
   lineFoldingOnly = true
 }
 
-local servers = { "gopls", "rust_analyzer", "graphql", "tsserver", "pyright" }
+local servers = {
+  "gopls",
+  "rust_analyzer",
+  "graphql",
+  "tsserver",
+  "pyright",
+  "html",
+  "svelte",
+  "tailwindcss",
+}
 
 for _, server in ipairs(servers) do
   lspconfig[server].setup({
