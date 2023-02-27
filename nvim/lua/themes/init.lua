@@ -4,13 +4,14 @@ vim.cmd [[
   endif
 ]]
 
+
 require("catppuccin").setup({
   flavour = "mocha", -- latte, frappe, macchiato, mocha
   background = {
     light = "latte",
     dark = "mocha",
   },
-  transparent_background = true,
+  transparent_background = false,
   show_end_of_buffer = true, -- show the '~' characters after the end of buffers
   term_colors = false,
   dim_inactive = {
@@ -36,7 +37,7 @@ require("catppuccin").setup({
   },
   color_overrides = {
     mocha = {
-      base = "#000000",
+      base = "#111111",
     },
   },
   custom_highlights = {},
