@@ -56,7 +56,7 @@ local neovim_text_1 = {
   "██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║",
   "██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║",
   "╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝",
-  "                                                  "
+  "                                                  ",
 }
 
 local apiplus_logo = {
@@ -91,7 +91,7 @@ local alpha = require("alpha")
 local dashboard = require("alpha/themes/dashboard")
 
 -- Set header
-dashboard.section.header.val = apiplus_logo
+dashboard.section.header.val = neovim_text_1
 
 -- Set menu
 dashboard.section.buttons.val = {
@@ -107,9 +107,9 @@ dashboard.section.buttons.val = {
 dashboard.section.footer.val = {
   "",
   "",
-  "\" Wherever smart people work, doors are unlocked. \"",
+  "            \" Use the source, Luke. \"            ",
   "                                                   ",
-  "                             - Steve Wozniak       ",
+  "                            - Master Yoda          ",
   "",
   "",
 }
