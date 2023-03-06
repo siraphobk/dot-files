@@ -28,9 +28,9 @@ set.wrap = false
 set.confirm = true
 
 vim.cmd([[ set signcolumn=yes:2 ]])
-vim.cmd([[ set list listchars=tab:\ \ ,nbsp:␣,trail:•,extends:⟩,precedes:⟨ ]])
+vim.cmd([[ set list listchars=tab:~↦,nbsp:␣,trail:•,extends:⟩,precedes:⟨ ]])
 
 vim.cmd([[
-	syntax on
+  syntax on
   filetype plugin on
 ]])
