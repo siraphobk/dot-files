@@ -47,13 +47,14 @@ cmp_capabilities.textDocument.foldingRange = {
 }
 
 local servers = {
-  "gopls",
-  "rust_analyzer",
-  "graphql",
-  "tsserver",
-  "pyright",
+  "clangd",
   "html",
+  "gopls",
+  "graphql",
+  "pyright",
+  "rust_analyzer",
   "svelte",
+  "tsserver",
   "tailwindcss",
 }
 
