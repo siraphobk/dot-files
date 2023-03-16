@@ -51,6 +51,7 @@ local servers = {
   "html",
   "gopls",
   "graphql",
+  "jsonls",
   "pyright",
   "rust_analyzer",
   "svelte",
