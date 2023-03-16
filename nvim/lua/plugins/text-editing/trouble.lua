@@ -1,19 +1,22 @@
 require("trouble").setup({})
 
-vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
-vim.keymap.set(
-  "n",
-  "<leader>xw",
-  "<cmd>TroubleToggle workspace_diagnostics<cr>",
-  { silent = true, noremap = true }
-)
-vim.keymap.set(
-  "n",
-  "<leader>xd",
-  "<cmd>TroubleToggle document_diagnostics<cr>",
-  { silent = true, noremap = true }
-)
+local status, which_key = pcall(require, "which-key")
+if not status then
+  error("which-key is not found")
+  return
+end
 
-vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { silent = true, noremap = true })
-vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
-vim.keymap.set("n", "<leader>gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
+which_key.register({
+      ["<leader>"] = {
+    name = "Trouble",
+    x = {
+      name = "Trouble",
+      x = { "<cmd>TroubleToggle<cr>", "Toggle" },
+      w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics" },
+      d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics" },
+      l = { "<cmd>TroubleToggle loclist<cr>", "Loclist" },
+      q = { "<cmd>TroubleToggle quickfix<cr>", "Quickfix" },
+      g = { "<cmd>TroubleToggle lsp_references<cr>", "LSP References" },
+    },
+  },
+})

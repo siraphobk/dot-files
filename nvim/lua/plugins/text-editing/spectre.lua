@@ -1,12 +1,20 @@
 local spectre = require("spectre")
 spectre.setup()
 
-vim.keymap.set("n", "<leader>So", function()
-  spectre.open()
-end)
-vim.keymap.set("n", "<leader>Sw", function()
-  spectre.open_visual({ select_word = true })
-end)
-vim.keymap.set("n", "<leader>Sf", function()
-  spectre.open_file_search()
-end)
+local status, which_key = pcall(require, "which-key")
+if not status then
+  error("which-key is not found")
+  return
+end
+
+which_key.register({
+      ["<leader>"] = {
+    name = "Spectre",
+    S = {
+      name = "Spectre",
+      o = { spectre.open, "Open" },
+      w = { spectre.open_visual, "Open Visual" },
+      f = { spectre.open_file_search, "Open File Search" },
+    },
+  },
+})
