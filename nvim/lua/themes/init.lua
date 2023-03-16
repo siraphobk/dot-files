@@ -20,7 +20,7 @@ require("catppuccin").setup({
     percentage = 0.50,
   },
   no_italic = false, -- Force no italic
-  no_bold = false, -- Force no bold
+  no_bold = false,   -- Force no bold
   styles = {
     comments = { "italic" },
     conditionals = { "italic" },
@@ -60,7 +60,6 @@ require("catppuccin").setup({
 -- setup must be called before loading
 vim.cmd.colorscheme("catppuccin")
 vim.cmd([[ colorscheme catppuccin ]])
-
 vim.cmd([[
 " set highlight cursorline to grey
 highlight CursorLine term=none cterm=none ctermfg=none ctermbg=none gui=none guifg=none guibg=#353535

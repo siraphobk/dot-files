@@ -108,8 +108,6 @@ dashboard.section.footer.val = {
   "",
   "",
   "            \" Use the source, Luke. \"            ",
-  "                                                   ",
-  "                            - Master Yoda          ",
   "",
   "",
 }

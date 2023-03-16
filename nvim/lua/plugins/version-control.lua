@@ -1,5 +1,6 @@
 return {
   {
+    -- Sign column for Git
     "lewis6991/gitsigns.nvim",
     config = function()
       require("gitsigns").setup()
@@ -7,9 +8,11 @@ return {
     event = "BufEnter",
   },
   {
+    -- Git integration
     "tpope/vim-fugitive",
   },
   {
+    -- GitHub integration plugin
     'pwntester/octo.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
