@@ -14,14 +14,14 @@ local set_keymaps = function(bufnr)
     },
     K = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover" },
     gr = { "<cmd>lua vim.lsp.buf.references()<cr>", "References" },
-        ["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "Signature help" },
-        ["<leader>wa"] = { "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>", "Add workspace folder" },
-        ["<leader>wr"] = { "<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>", "Remove workspace folder" },
-        ["<leader>wl"] = { "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>",
+    ["<C-k>"] = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "Signature help" },
+    ["<leader>wa"] = { "<cmd>lua vim.lsp.buf.add_workspace_folder()<cr>", "Add workspace folder" },
+    ["<leader>wr"] = { "<cmd>lua vim.lsp.buf.remove_workspace_folder()<cr>", "Remove workspace folder" },
+    ["<leader>wl"] = { "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<cr>",
       "List workspace folders" },
-        ["<leader>rn"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-        ["<leader>ca"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code action" },
-        ["<leader>F"] = { function() vim.lsp.buf.format({ async = true }) end, "Format" },
+    ["<leader>rn"] = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+    ["<leader>ca"] = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code action" },
+    ["<leader>F"] = { function() vim.lsp.buf.format({ async = true }) end, "Format" },
   }, { buffer = bufnr })
 end
 
@@ -33,6 +33,12 @@ local on_attach = function(client, bufnr)
       group = group,
       buffer = bufnr,
       callback = function()
+        print(vim.bo.filetype)
+        if vim.bo.filetype == "c" or vim.bo.filetype == "cpp" then
+          -- do not format c files
+          return
+        end
+
         vim.lsp.buf.format({ bufnr = bufnr, async = false })
       end,
     })
