@@ -1,3 +1,4 @@
+# Checkout a local branch
 gch() {
   target=$(git branch | fzf | tr -d '[:space:]')
 
@@ -10,3 +11,14 @@ gch() {
   # Otherwise, checkout to the target branch
   git checkout $target
 }
+
+# Checkout a remote branch onto the local machine
+gchr() {
+  git branch -r | sed 's/^[^\/]*\///' | fzf | xargs git checkout
+
+  # Print colored message
+  GREEN='\033[32m'
+  RESET='\033[0m'
+  echo -e "${GREEN}Successfully checked out remote branch!${RESET}\n"
+}
+
