@@ -4,7 +4,10 @@ gch() {
 
   # If the first character of the target variable is an asterisk, then prompt the user that they cannot checkout from the current branch
   if [[ ${target:0:1} == "*" ]]; then
-    echo "Cannot checkout from the current branch!"
+    RED='\033[31m'
+    RESET='\033[0m'
+
+    echo -e "\n${RED}Cannot checkout from the current branch!${RESET}\n"
     return
   fi
 
@@ -19,6 +22,7 @@ gchr() {
   # Print colored message
   GREEN='\033[32m'
   RESET='\033[0m'
-  echo -e "${GREEN}Successfully checked out remote branch!${RESET}\n"
+
+  echo -e "\n${GREEN}Successfully checked out remote branch!${RESET}\n"
 }
 
