@@ -33,7 +33,6 @@ local on_attach = function(client, bufnr)
       group = group,
       buffer = bufnr,
       callback = function()
-        print(vim.bo.filetype)
         if vim.bo.filetype == "c" or vim.bo.filetype == "cpp" then
           -- do not format c files
           return
