@@ -25,7 +25,7 @@ which_key.register({
         harpoon_mark.add_file()
         -- print the current file path
         local file_path = vim.fn.expand("%:p")
-        print(file_path .. "added to harpoon marks")
+        print("'" .. file_path .. "'" .. " added to harpoon marks")
       end,
       "add file" },
     j = { harpoon_ui.nav_next, "next" },
