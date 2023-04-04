@@ -39,6 +39,13 @@ return {
       require("nvim-autopairs").setup({})
     end,
   },
+  {
+    "ThePrimeagen/harpoon",
+    event = "BufReadPre",
+    config = function()
+      require("plugins.text-editing.harpoon")
+    end,
+  },
 
   -- Completion engine
   {
