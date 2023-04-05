@@ -79,7 +79,7 @@ return {
     config = function()
       require('aerial').setup({
         layout = {
-          max_width = { 50, 0.3 },
+          max_width = { 100, 0.3 },
         },
         show_guides = true,
       })
