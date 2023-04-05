@@ -75,11 +75,19 @@ return {
   },
   { "saadparwaiz1/cmp_luasnip" },
   {
-    "simrat39/symbols-outline.nvim",
+    'stevearc/aerial.nvim',
     config = function()
-      require("symbols-outline").setup()
-      vim.keymap.set("n", "<leader>a", ":SymbolsOutline<CR>")
-    end,
+      require('aerial').setup({
+        layout = {
+          max_width = { 50, 0.3 },
+        },
+        show_guides = true,
+      })
+
+      require('telescope').load_extension('aerial')
+
+      vim.keymap.set('n', '<leader>a', '<cmd>AerialToggle!<CR>')
+    end
   },
   {
     "numToStr/Comment.nvim",
