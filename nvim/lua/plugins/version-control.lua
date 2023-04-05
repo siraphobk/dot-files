@@ -14,7 +14,7 @@ return {
   {
     -- GitHub integration plugin
     'pwntester/octo.nvim',
-    requires = {
+    dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
     },
