@@ -114,12 +114,6 @@ return {
     end,
   },
   {
-    "karb94/neoscroll.nvim",
-    config = function()
-      require("neoscroll").setup()
-    end,
-  },
-  {
     "folke/trouble.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
