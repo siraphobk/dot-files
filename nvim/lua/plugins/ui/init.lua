@@ -1,8 +1,14 @@
 return {
   -- Themes --------------------------------------------------------------------
+  -- For theme setup, please navigate to '/lua/themes'
+
   { "sainnhe/gruvbox-material" },
   { "folke/tokyonight.nvim" },
-  { "catppuccin/nvim",         name = "catppuccin" },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+  },
+  { "rebelot/kanagawa.nvim" },
 
   -- Other ---------------------------------------------------------------------
   {
@@ -25,7 +31,6 @@ return {
     config = function()
       require("todo-comments").setup({})
     end,
-
     -- Examples
     -- TODO: What else?
     -- HACK: Weird code
