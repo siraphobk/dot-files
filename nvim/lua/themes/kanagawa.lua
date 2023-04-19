@@ -2,7 +2,7 @@ require('kanagawa').setup({
   compile = false,  -- enable compiling the colorscheme
   undercurl = true, -- enable undercurls
   commentStyle = { italic = true },
-  functionStyle = {},
+  functionStyle = { bold = true },
   keywordStyle = { italic = true },
   statementStyle = { bold = true },
   typeStyle = {},
@@ -16,8 +16,7 @@ require('kanagawa').setup({
     theme = {
       wave = {},
       lotus = {},
-      dragon = {
-      },
+      dragon = {},
       all = {
         ui = {
           bg_gutter = "none"
@@ -28,15 +27,14 @@ require('kanagawa').setup({
   overrides = function(colors) -- add/modify highlights
     return {}
   end,
-  theme = "wave", -- Load "wave" theme when 'background' option is not set
+  theme = "wave",
   background = {
-    -- map the value of 'background' option to a theme
-    dark = "dragon", -- try "dragon" !
+    dark = "dragon",
     light = "lotus"
   },
 })
 
-vim.cmd([[ colorscheme kanagawa ]])
+vim.cmd([[ colorscheme kanagawa-dragon ]])
 
 local colors = require("kanagawa.colors").setup()
 local palette_colors = colors.palette
@@ -47,4 +45,4 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
   end,
 })
 
-vim.cmd([[ colorscheme kanagawa ]]) -- triggering the autocmd
+vim.cmd([[ colorscheme kanagawa-dragon ]]) -- triggering the autocmd
