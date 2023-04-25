@@ -4,7 +4,7 @@
 git config --get-regexp alias | awk '{print $1}' | xargs -I{} git config --unset {}
 
 git config --global alias.pu      "push origin HEAD"
-git config --global alias.p      "pull origin HEAD"
+git config --global alias.p      "pull"
 git config --global alias.fuckit "reset --hard"
 git config --global alias.s      "status"
 git config --global alias.aa     "add -A"
