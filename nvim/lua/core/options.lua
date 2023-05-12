@@ -27,6 +27,9 @@ set.backspace = "indent,start,eol"
 set.wrap = false
 set.confirm = true
 
+-- set provider
+vim.g.python3_host_prog = "/usr/bin/python3"
+
 vim.cmd([[ set signcolumn=yes:2 ]])
 vim.cmd([[ set list listchars=tab:\ ↦,nbsp:␣,trail:•,extends:⟩,precedes:⟨ ]])
 

@@ -26,10 +26,10 @@ vim.diagnostic.config({
 -- Set keymaps for diagnostics
 local wk = require("which-key")
 wk.register({
-      ["<leader>do"] = { "<cmd>lua vim.diagnostic.open_float(0, { scope = 'line' })<CR>", "Open diagnostics" },
-      ["<leader>d["] = { "<cmd>lua vim.diagnostic.goto_prev({ scope = 'line' })<CR>", "Previous diagnostic" },
-      ["<leader>d]"] = { "<cmd>lua vim.diagnostic.goto_next({ scope = 'line' })<CR>", "Next diagnostic" },
-      ["<leader>ds"] = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Set location list" },
+  ["<leader>do"] = { "<cmd>lua vim.diagnostic.open_float(0, { scope = 'line' })<CR>", "Open diagnostics" },
+  ["<leader>d["] = { "<cmd>lua vim.diagnostic.goto_prev({ scope = 'line' })<CR>", "Previous diagnostic" },
+  ["<leader>d]"] = { "<cmd>lua vim.diagnostic.goto_next({ scope = 'line' })<CR>", "Next diagnostic" },
+  ["<leader>ds"] = { "<cmd>lua vim.diagnostic.setloclist()<CR>", "Set location list" },
 })
 
 -- Language Server Configurations
@@ -50,6 +50,7 @@ local servers = {
   "pyright",
   "rust_analyzer",
   "svelte",
+  "sqlls",
   "tsserver",
   "tailwindcss",
   {
