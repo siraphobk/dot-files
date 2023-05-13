@@ -37,68 +37,77 @@ map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
 -- :BarbarEnable - enables barbar (enabled by default)
 -- :BarbarDisable - very bad command, should never be used
 
+vim.g.barbar_auto_setup = false
 require('barbar').setup({
-  icons = {
-    -- Configure the base icons on the bufferline.
-    buffer_index = false,
-    buffer_number = false,
-    button = '',
-    -- Enables / disables diagnostic symbols
-    diagnostics = {
-      [vim.diagnostic.severity.ERROR] = { enabled = true, icon = 'ﬀ' },
-      [vim.diagnostic.severity.WARN] = { enabled = false },
-      [vim.diagnostic.severity.INFO] = { enabled = false },
-      [vim.diagnostic.severity.HINT] = { enabled = true },
-    },
-    filetype = {
-      -- Sets the icon's highlight group.
-      -- If false, will use nvim-web-devicons colors
-      custom_colors = false,
-      -- Requires `nvim-web-devicons` if `true`
-      enabled = true,
-    },
-    separator = { left = '▎', right = '' },
-    -- Configure the icons on the bufferline when modified or pinned.
-    -- Supports all the base icon options.
-    modified = { button = '●' },
-    pinned = { button = '📍' },
-    -- Configure the icons on the bufferline based on the visibility of a buffer.
-    -- Supports all the base icon options, plus `modified` and `pinned`.
-    alternate = { filetype = { enabled = false } },
-    current = { buffer_index = true },
-    inactive = { button = '×' },
-    visible = { modified = { buffer_number = false } },
-  },
+  -- icons = {
+  --   -- -- Configure the base icons on the bufferline.
+  --   -- buffer_index = false,
+  --   -- buffer_number = false,
+  --   -- button = '',
+  --   -- -- Enables / disables diagnostic symbols
+  --   -- diagnostics = {
+  --   --   [vim.diagnostic.severity.ERROR] = { enabled = true, icon = 'ﬀ' },
+  --   --   [vim.diagnostic.severity.WARN] = { enabled = false },
+  --   --   [vim.diagnostic.severity.INFO] = { enabled = false },
+  --   --   [vim.diagnostic.severity.HINT] = { enabled = true },
+  --   -- },
+  --   -- filetype = {
+  --   --   -- Sets the icon's highlight group.
+  --   --   -- If false, will use nvim-web-devicons colors
+  --   --   custom_colors = false,
+  --   --   -- Requires `nvim-web-devicons` if `true`
+  --   --   enabled = true,
+  --   -- },
+  --   -- -- Set the filetypes which barbar will offset itself for
+  --   -- sidebar_filetypes = {
+  --   --   NvimTree = true,
+  --   -- },
+  --   -- separator = { left = '▎', right = '' },
+  --   -- -- Configure the icons on the bufferline when modified or pinned.
+  --   -- -- Supports all the base icon options.
+  --   -- modified = { button = '●' },
+  --   -- pinned = { button = '📍' },
+  --   -- -- Configure the icons on the bufferline based on the visibility of a buffer.
+  --   -- -- Supports all the base icon options, plus `modified` and `pinned`.
+  --   -- alternate = { filetype = { enabled = false } },
+  --   -- current = { buffer_index = true },
+  --   -- inactive = { button = '×' },
+  --   -- visible = { modified = { buffer_number = false } },
+  -- },
 })
 
+require 'persistence'.setup {
+  options = { --[[<other options>,]] 'globals' },
+  pre_save = function() vim.api.nvim_exec_autocmds('User', { pattern = 'SessionSavePre' }) end,
+}
 
--- File tree integrations
-vim.api.nvim_create_autocmd('FileType', {
-  callback = function(tbl)
-    local set_offset = require('barbar.api').set_offset
-
-    local bufwinid
-    local last_width
-    local autocmd = vim.api.nvim_create_autocmd('WinScrolled', {
-      callback = function()
-        bufwinid = bufwinid or vim.fn.bufwinid(tbl.buf)
-
-        local width = vim.api.nvim_win_get_width(bufwinid)
-        if width ~= last_width then
-          set_offset(width, ' FileTree')
-          last_width = width
-        end
-      end,
-    })
-
-    vim.api.nvim_create_autocmd('BufWipeout', {
-      buffer = tbl.buf,
-      callback = function()
-        vim.api.nvim_del_autocmd(autocmd)
-        set_offset(0)
-      end,
-      once = true,
-    })
-  end,
-  pattern = 'NvimTree',
-})
+-- -- File tree integrations
+-- vim.api.nvim_create_autocmd('FileType', {
+--   callback = function(tbl)
+--     local set_offset = require('barbar.api').set_offset
+--
+--     local bufwinid
+--     local last_width
+--     local autocmd = vim.api.nvim_create_autocmd('WinScrolled', {
+--       callback = function()
+--         bufwinid = bufwinid or vim.fn.bufwinid(tbl.buf)
+--
+--         local width = vim.api.nvim_win_get_width(bufwinid)
+--         if width ~= last_width then
+--           set_offset(width, ' FileTree')
+--           last_width = width
+--         end
+--       end,
+--     })
+--
+--     vim.api.nvim_create_autocmd('BufWipeout', {
+--       buffer = tbl.buf,
+--       callback = function()
+--         vim.api.nvim_del_autocmd(autocmd)
+--         set_offset(0)
+--       end,
+--       once = true,
+--     })
+--   end,
+--   pattern = 'NvimTree',
+-- })

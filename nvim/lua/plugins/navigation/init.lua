@@ -1,10 +1,19 @@
 return {
+  -- NOTE: Buggy
+  -- {
+  --   'romgrk/barbar.nvim',
+  --   dependencies = 'nvim-tree/nvim-web-devicons',
+  --   config = function()
+  --     require("plugins.navigation.barbar")
+  --   end,
+  -- },
   {
-    'romgrk/barbar.nvim',
+    'akinsho/bufferline.nvim',
+    version = "*",
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
-      require("plugins.navigation.barbar")
-    end,
+      require("plugins.navigation.bufferline")
+    end
   },
   {
     "nvim-telescope/telescope.nvim",
