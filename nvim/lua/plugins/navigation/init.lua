@@ -1,18 +1,18 @@
 return {
-  -- NOTE: Buggy
-  -- {
-  --   'romgrk/barbar.nvim',
-  --   dependencies = 'nvim-tree/nvim-web-devicons',
-  --   config = function()
-  --     require("plugins.navigation.barbar")
-  --   end,
-  -- },
   {
     'akinsho/bufferline.nvim',
     version = "*",
     dependencies = 'nvim-tree/nvim-web-devicons',
     config = function()
       require("plugins.navigation.bufferline")
+    end
+  },
+  {
+    'famiu/bufdelete.nvim',
+    config = function()
+      local map = vim.api.nvim_set_keymap
+      local opts = { noremap = true, silent = true }
+      map('n', '<A-c>', ":lua require('bufdelete').bufdelete(0, false)<CR>", opts)
     end
   },
   {
