@@ -39,14 +39,4 @@ return {
     -- WARNING: Beware, coders...
     -- NOTE: Note to self
   },
-  {
-    "folke/zen-mode.nvim",
-    config = function()
-      require("zen-mode").setup({
-        window = {
-          width = 0.70,
-        }
-      })
-    end
-  }
 }
