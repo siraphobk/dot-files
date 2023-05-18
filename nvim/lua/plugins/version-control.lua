@@ -36,8 +36,8 @@ return {
           o = { '<cmd>GitConflictChooseOurs<cr>', 'Select the current changes' },
           t = { '<cmd>GitConflictChooseTheirs<cr>', 'Select the incoming changes' },
           b = { '<cmd>GitConflictChooseBoth<cr>', 'Select both changes' },
-          n = { '<cmd>GitConflictNextConflict<cr>', 'Move to the next conflict' },
-          p = { '<cmd>GitConflictPrevConflict<cr>', 'Move to the previous conflict' },
+          [']'] = { '<cmd>GitConflictNextConflict<cr>', 'Move to the next conflict' },
+          ['['] = { '<cmd>GitConflictPrevConflict<cr>', 'Move to the previous conflict' },
           ['0'] = { '<cmd>GitConflictChooseNone<cr>', 'Select none of the changes' },
         }
       }, { prefix = '<leader>' })
