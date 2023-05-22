@@ -44,5 +44,3 @@ vim.api.nvim_create_autocmd({ "ColorScheme" }, {
     vim.cmd("hi NvimTreeNormal guibg=" .. "#111111")
   end,
 })
-
-vim.cmd([[ colorscheme kanagawa-dragon ]]) -- triggering the autocmd

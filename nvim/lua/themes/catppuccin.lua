@@ -8,7 +8,7 @@ require("catppuccin").setup({
   show_end_of_buffer = true, -- show the '~' characters after the end of buffers
   term_colors = false,
   dim_inactive = {
-    enabled = false,
+    enabled = true,
     shade = "dark",
     percentage = 0.50,
   },
@@ -50,5 +50,3 @@ require("catppuccin").setup({
     which_key = true,
   },
 })
-
-vim.cmd([[ colorscheme catppuccin ]])

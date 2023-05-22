@@ -9,8 +9,10 @@ local theme = "kanagawa"
 
 if theme == "catppuccin" then
   require("themes.catppuccin")
+  vim.cmd([[ colorscheme catppuccin-mocha ]])
 elseif theme == "kanagawa" then
   require("themes.kanagawa")
+  vim.cmd([[ colorscheme kanagawa-dragon ]]) -- triggering the autocmd
 end
 
 vim.cmd([[
