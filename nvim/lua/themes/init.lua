@@ -4,18 +4,18 @@ vim.cmd [[
   endif
 ]]
 
--- Available themes: catppuccin, kanagawa
-local theme = "kanagawa"
+-- Available themes: catppuccin, kanagawa, tokyonight
+local theme = "catppuccin"
 
 if theme == "catppuccin" then
-  require("themes.catppuccin")
-  vim.cmd([[ colorscheme catppuccin-mocha ]])
+  -- vim.cmd([[ colorscheme catppuccin-mocha ]])
 elseif theme == "kanagawa" then
-  require("themes.kanagawa")
-  vim.cmd([[ colorscheme kanagawa-dragon ]]) -- triggering the autocmd
+  vim.cmd([[ colorscheme kanagawa-dragon ]])
+elseif theme == "tokyonight" then
+  vim.cmd([[ colorscheme tokyonight-moon ]])
 end
 
-vim.cmd([[
-  " set highlight cursorline to grey
-  highlight CursorLine term=none cterm=none ctermfg=none ctermbg=none gui=none guifg=none guibg=#353535
-]])
+-- vim.cmd([[
+--   " set highlight cursorline to grey
+--   highlight CursorLine term=none cterm=none ctermfg=none ctermbg=none gui=none guifg=none guibg=#353535
+-- ]])

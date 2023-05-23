@@ -11,7 +11,7 @@ require('kanagawa').setup({
   terminalColors = true, -- define vim.g.terminal_color_{0,17}
   colors = {
     palette = {
-      dragonBlack3 = "#0b0b0b",
+      -- dragonBlack3 = "#0b0b0b",
     },
     theme = {
       wave = {},
@@ -24,9 +24,6 @@ require('kanagawa').setup({
       },
     },
   },
-  overrides = function(colors) -- add/modify highlights
-    return {}
-  end,
   theme = "wave",
   background = {
     dark = "dragon",
@@ -34,13 +31,11 @@ require('kanagawa').setup({
   },
 })
 
-vim.cmd([[ colorscheme kanagawa-dragon ]])
-
-local colors = require("kanagawa.colors").setup()
-local palette_colors = colors.palette
-vim.api.nvim_create_autocmd({ "ColorScheme" }, {
-  pattern = "*",
-  callback = function()
-    vim.cmd("hi NvimTreeNormal guibg=" .. "#111111")
-  end,
-})
+-- local colors = require("kanagawa.colors").setup()
+-- local palette_colors = colors.palette
+-- vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+--   pattern = "*",
+--   callback = function()
+--     vim.cmd("hi NvimTreeNormal guibg=" .. "#0D0D0D")
+--   end,
+-- })

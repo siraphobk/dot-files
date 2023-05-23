@@ -17,5 +17,5 @@ else
 
   require("core")
   require("lazy").setup("plugins")
-  require("themes")
+  -- require("themes")
 end
