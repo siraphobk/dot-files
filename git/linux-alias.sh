@@ -18,11 +18,5 @@ gch() {
 # Checkout a remote branch onto the local machine
 gchr() {
   git branch -r | sed 's/^[^\/]*\///' | fzf | xargs git checkout
-
-  # Print colored message
-  GREEN='\033[32m'
-  RESET='\033[0m'
-
-  echo -e "\n${GREEN}Successfully checked out remote branch!${RESET}\n"
 }
 
