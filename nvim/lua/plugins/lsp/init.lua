@@ -18,11 +18,17 @@ return {
     end,
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "mhartington/formatter.nvim",
     config = function()
-      require("plugins.lsp.null-ls")
+      require("plugins.lsp.formatter")
     end,
   },
+  -- {
+  --   "jose-elias-alvarez/null-ls.nvim",
+  --   config = function()
+  --     require("plugins.lsp.null-ls")
+  --   end,
+  -- },
   {
     "ray-x/go.nvim",
     config = function()
