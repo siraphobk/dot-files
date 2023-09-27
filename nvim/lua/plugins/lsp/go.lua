@@ -1,19 +1,19 @@
 require('go').setup({
-  disable_defaults = false,                     -- true|false when true set false to all boolean settings and replace all table
+  disable_defaults = false, -- true|false when true set false to all boolean settings and replace all table
   -- settings with {}
-  go = 'go',                                    -- go command, can be go[default] or go1.18beta1
-  goimport = 'gopls',                           -- goimport command, can be gopls[default] or goimport
-  fillstruct = 'gopls',                         -- can be nil (use fillstruct, slower) and gopls
-  gofmt = 'gofumpt',                            --gofmt cmd,
-  max_line_len = 128,                           -- max line length in golines format, Target maximum line length for golines
-  tag_transform = false,                        -- can be transform option("snakecase", "camelcase", etc) check gomodifytags for details and more options
-  tag_options = 'json=omitempty',               -- sets options sent to gomodifytags, i.e., json=omitempty
-  gotests_template = "",                        -- sets gotests -template parameter (check gotests for details)
-  gotests_template_dir = "",                    -- sets gotests -template_dir parameter (check gotests for details)
-  comment_placeholder = '',                     -- comment_placeholder your cool placeholder e.g. ﳑ       
+  go = 'go', -- go command, can be go[default] or go1.18beta1
+  goimport = 'gopls', -- goimport command, can be gopls[default] or goimport
+  fillstruct = 'gopls', -- can be nil (use fillstruct, slower) and gopls
+  gofmt = 'gofumpt', --gofmt cmd,
+  max_line_len = 128, -- max line length in golines format, Target maximum line length for golines
+  tag_transform = false, -- can be transform option("snakecase", "camelcase", etc) check gomodifytags for details and more options
+  tag_options = 'json=omitempty', -- sets options sent to gomodifytags, i.e., json=omitempty
+  gotests_template = "", -- sets gotests -template parameter (check gotests for details)
+  gotests_template_dir = "", -- sets gotests -template_dir parameter (check gotests for details)
+  comment_placeholder = '', -- comment_placeholder your cool placeholder e.g. ﳑ       
   icons = { breakpoint = '🧘', currentpos = '🏃' }, -- setup to `false` to disable icons setup
-  verbose = false,                              -- output loginf in messages
-  lsp_cfg = false,                              -- true: use non-default gopls setup specified in go/lsp.lua
+  verbose = false, -- output loginf in messages
+  lsp_cfg = false, -- true: use non-default gopls setup specified in go/lsp.lua
   -- false: do nothing
   -- if lsp_cfg is a table, merge table with with non-default gopls setup in go/lsp.lua, e.g.
   --   lsp_cfg = {settings={gopls={matcher='CaseInsensitive', ['local'] = 'your_local_module_path', gofumpt = true }}}
@@ -27,12 +27,14 @@ require('go').setup({
   --    vim.api.nvim_buf_set_keymap(bufnr, "n", "<space>F", "<cmd>lua vim.lsp.buf.formatting()<CR>", {noremap=true, silent=true})
   -- end
   -- to setup a table of codelens
-  lsp_diag_hdlr = true, -- hook lsp diag handler
-  lsp_diag_underline = true,
-  -- virtual text setup
-  lsp_diag_virtual_text = { space = 0, prefix = "" },
-  lsp_diag_signs = true,
-  lsp_diag_update_in_insert = false,
+  diagnostic = { -- set diagnostic to false to disable vim.diagnostic setup
+    hdlr = true, -- hook lsp diag handler
+    underline = true,
+    -- virtual text setup
+    virtual_text = { space = 0, prefix = '■' },
+    signs = true,
+    update_in_insert = false,
+  },
   lsp_document_formatting = true,
   -- set to true: use gopls to format
   -- false if you want to use other formatter tool(e.g. efm, nulls)
@@ -87,17 +89,17 @@ require('go').setup({
   -- float term recommend if you use richgo/ginkgo with terminal color
 
   floaterm = {
-                                                                                 -- position
-    posititon = 'auto',                                                          -- one of {`top`, `bottom`, `left`, `right`, `center`, `auto`}
-    width = 0.45,                                                                -- width of float window if not auto
-    height = 0.98,                                                               -- height of float window if not auto
+    -- position
+    posititon = 'auto',                                                        -- one of {`top`, `bottom`, `left`, `right`, `center`, `auto`}
+    width = 0.45,                                                              -- width of float window if not auto
+    height = 0.98,                                                             -- height of float window if not auto
   },
-  trouble = true,                                                                -- true: use trouble to open quickfix
-  test_efm = false,                                                              -- errorfomat for quickfix, default mix mode, set to true will be efm only
-  luasnip = true,                                                                -- enable included luasnip snippets. you can also disable while add lua/snips folder to luasnip load
+  trouble = true,                                                              -- true: use trouble to open quickfix
+  test_efm = false,                                                            -- errorfomat for quickfix, default mix mode, set to true will be efm only
+  luasnip = true,                                                              -- enable included luasnip snippets. you can also disable while add lua/snips folder to luasnip load
   --  Do not enable this if you already added the path, that will duplicate the entries
-  on_jobstart = function(cmd) _ = cmd end,                                       -- callback for stdout
-  on_stdout = function(err, data) _, _ = err, data end,                          -- callback when job started
-  on_stderr = function(err, data) _, _ = err, data end,                          -- callback for stderr
-  on_exit = function(code, signal, output) _, _, _ = code, signal, output end,   -- callback for jobexit, output : string
+  on_jobstart = function(cmd) _ = cmd end,                                     -- callback for stdout
+  on_stdout = function(err, data) _, _ = err, data end,                        -- callback when job started
+  on_stderr = function(err, data) _, _ = err, data end,                        -- callback for stderr
+  on_exit = function(code, signal, output) _, _, _ = code, signal, output end, -- callback for jobexit, output : string
 })

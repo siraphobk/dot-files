@@ -45,6 +45,10 @@ local servers = {
   "clangd",
   "html",
   "gopls",
+  -- needs golanci-lint-ls
+  -- go install github.com/nametake/golangci-lint-langserver@latest
+  -- go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+  "golangci_lint_ls",
   "graphql",
   "jsonls",
   "pyright",
@@ -80,10 +84,15 @@ local servers = {
 
 for _, server in ipairs(servers) do
   if type(server) == "string" then
-    lspconfig[server].setup({
-      on_attach = common.on_attach,
-      capabilities = cmp_capabilities,
-    })
+    if server == "gopls" then
+      local cfg = require("go.lsp").config()
+      lspconfig[server].setup(cfg)
+    else
+      lspconfig[server].setup({
+        on_attach = common.on_attach,
+        capabilities = cmp_capabilities,
+      })
+    end
   elseif type(server) == "table" then
     lspconfig[server.name].setup(server.config)
   else
