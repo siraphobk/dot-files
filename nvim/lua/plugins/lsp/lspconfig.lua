@@ -69,6 +69,8 @@ local servers = {
           return on_publish_diagnostics(_, result, ctx, config)
         end,
       },
+      on_attach = common.on_attach,
+      capabilities = cmp_capabilities,
     }
   },
   "graphql",
@@ -108,6 +110,13 @@ for _, server in ipairs(servers) do
   if type(server) == "string" then
     if server == "gopls" then
       local cfg = require("go.lsp").config()
+
+      -- The original `cfg` also has on_attach and capabilities included but ours is packed with autoformat and cmp capabilities
+      -- so we'll gonna use ours instead. However, I'm not sure what the difference is between the two. If something breaks, try
+      -- using the original `cfg` instead.
+      cfg.on_attach = common.on_attach
+      cfg.capabilities = cmp_capabilities
+
       lspconfig[server].setup(cfg)
     else
       lspconfig[server].setup({
