@@ -48,14 +48,19 @@ local servers = {
   "clangd",
   "html",
   "gopls",
-  -- needs golanci-lint-ls
-  -- go install github.com/nametake/golangci-lint-langserver@latest
-  -- go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
   {
+    -- needs golanci-lint-ls
+    -- go install github.com/nametake/golangci-lint-langserver@latest
+    -- go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+    --
     -- The reason why we need to implement our own handler is because of this issue: <https://github.com/folke/trouble.nvim/issues/224>
     name = "golangci_lint_ls",
     config = {
-      handlers = {
+      -- -- default init_options
+      -- init_options = {
+      --   command = { 'golangci-lint', 'run', '--out-format', 'json' }
+      -- },
+      handlers     = {
         -- stops an out-of-range column error when viewing diagnostics with Trouble.nvim
         ["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
           for idx, diag in ipairs(result.diagnostics) do
@@ -69,7 +74,7 @@ local servers = {
           return on_publish_diagnostics(_, result, ctx, config)
         end,
       },
-      on_attach = common.on_attach,
+      on_attach    = common.on_attach,
       capabilities = cmp_capabilities,
     }
   },
