@@ -3,8 +3,9 @@ stow-nvim-scripts:
 stow-alacritty:
 	stow -R .alacritty.yaml -t ~/.alacritty.yaml
 
+WORKING_DIR=$(shell pwd)
 symlink-tmux-conf:
-	ln -s ./.tmux.conf ~/.tmux.conf
+	ln -s $(WORKING_DIR)/.tmux.conf ~/.tmux.conf
 
 install: install-ripgrep install-tmux install-xclip
 install-ripgrep:

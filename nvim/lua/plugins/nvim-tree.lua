@@ -70,7 +70,6 @@ return {
     dependencies = {
       "nvim-tree/nvim-web-devicons",
     },
-    name = "nvim-tree-nvim-web-devicons",
     config = function()
       setup()
     end,
