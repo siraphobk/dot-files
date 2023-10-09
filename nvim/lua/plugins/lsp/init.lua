@@ -23,12 +23,6 @@ return {
     end,
   },
   {
-    "mhartington/formatter.nvim",
-    config = function()
-      require("plugins.lsp.formatter")
-    end,
-  },
-  {
     "ray-x/go.nvim",
     dependencies = {
       "ray-x/guihua.lua",
@@ -40,4 +34,18 @@ return {
     end,
     ft = go_file_types,
   },
+
+  -- none-ls and formatter.nvim are contested!
+  {
+    "nvimtools/none-ls.nvim",
+    config = function()
+      require("plugins.lsp.null-ls")
+    end,
+  },
+  -- {
+  --   "mhartington/formatter.nvim",
+  --   config = function()
+  --     require("plugins.lsp.formatter")
+  --   end,
+  -- },
 }
