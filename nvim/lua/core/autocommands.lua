@@ -18,6 +18,6 @@ api.nvim_create_autocmd('BufEnter', {
   pattern = { "Tiltfile*" },
   desc = "set filetype for Tiltfile",
   callback = function(v)
-    vim.bo.filetype = "tiltfile"
+    vim.bo.filetype = "starlark"
   end
 })
